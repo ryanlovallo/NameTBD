@@ -27,10 +27,6 @@ struct OtherUserView: View {
                     Text(username).bold().font(.largeTitle)
                     // REPLACE rylo96 with "profile.username" when the time comes
 
-                    Button(action: { print("Edit profile")} ) {
-                        Text("**Edit**").padding().border(Color.black)
-                    }
-
                     Divider()
                     Text("**Job title:** \(jobtitle)")
                     Text("**Location:** \(loc)")
