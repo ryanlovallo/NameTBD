@@ -10,8 +10,19 @@ import SwiftUI
 struct LikedUsersView: View {
     
     @Binding var usersViewType: String
+    // hardcoded
+    var likedUserhardcode: LikedUsers = LikedUsers(name: "Rylo")
     
     var body: some View {
+        
+        // likedUserhardcode: LikedUsers
+        
+        List {
+            LikedUserRow(likedUser: likedUserhardcode)
+        }
+        
+        
+        
         Text("LIST OF USERS")
             .padding()
             .navigationTitle("SwiftUI Rylo")
