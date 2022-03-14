@@ -16,7 +16,8 @@ struct LikedUserRow: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-
+            
+            // NavigationView
             
             HStack {
                 if let name = likedUser.name{

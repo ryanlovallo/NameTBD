@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F070BA927DFF78600196BF6 /* OtherUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F070BA827DFF78600196BF6 /* OtherUserView.swift */; };
+		2F070BAB27DFFEA600196BF6 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F070BAA27DFFEA600196BF6 /* EditProfileView.swift */; };
 		2FA821F927DFD39B005FF430 /* PortfolioAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA821F827DFD39B005FF430 /* PortfolioAppApp.swift */; };
 		2FA821FD27DFD39D005FF430 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FA821FC27DFD39D005FF430 /* Assets.xcassets */; };
 		2FA8220027DFD39D005FF430 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FA821FF27DFD39D005FF430 /* Preview Assets.xcassets */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F070BA827DFF78600196BF6 /* OtherUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserView.swift; sourceTree = "<group>"; };
+		2F070BAA27DFFEA600196BF6 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		2FA821F527DFD39B005FF430 /* PortfolioApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PortfolioApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FA821F827DFD39B005FF430 /* PortfolioAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioAppApp.swift; sourceTree = "<group>"; };
 		2FA821FC27DFD39D005FF430 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,6 +71,8 @@
 				350AF19327DFEE0D00A1F796 /* LikedUserRow.swift */,
 				350AF19127DFECEB00A1F796 /* LikedUsers.swift */,
 				2FA8220C27DFE505005FF430 /* ContentView.swift */,
+				2F070BA827DFF78600196BF6 /* OtherUserView.swift */,
+				2F070BAA27DFFEA600196BF6 /* EditProfileView.swift */,
 				2FA8220A27DFD3EF005FF430 /* ProfileView.swift */,
 				2FA821FC27DFD39D005FF430 /* Assets.xcassets */,
 				2FA821FE27DFD39D005FF430 /* Preview Content */,
@@ -152,9 +158,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F070BAB27DFFEA600196BF6 /* EditProfileView.swift in Sources */,
 				350AF19427DFEE0D00A1F796 /* LikedUserRow.swift in Sources */,
 				2FA8220727DFD3BF005FF430 /* HomeView.swift in Sources */,
 				2FA8220D27DFE506005FF430 /* ContentView.swift in Sources */,
+				2F070BA927DFF78600196BF6 /* OtherUserView.swift in Sources */,
 				2FA8220B27DFD3EF005FF430 /* ProfileView.swift in Sources */,
 				2FA821F927DFD39B005FF430 /* PortfolioAppApp.swift in Sources */,
 				350AF19227DFECEB00A1F796 /* LikedUsers.swift in Sources */,

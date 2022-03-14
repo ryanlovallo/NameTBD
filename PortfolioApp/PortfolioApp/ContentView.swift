@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State var viewType = "Home"
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         if viewType == "likedusers" {

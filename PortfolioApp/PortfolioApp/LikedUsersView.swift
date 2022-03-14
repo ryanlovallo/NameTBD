@@ -16,14 +16,16 @@ struct LikedUsersView: View {
     var body: some View {
         
         // likedUserhardcode: LikedUsers
+        NavigationView {
+            List {
+                NavigationLink(destination: OtherUserView()) {
+                    LikedUserRow(likedUser: likedUserhardcode)
+                }
+            }
         
-        List {
-            LikedUserRow(likedUser: likedUserhardcode)
         }
         
         
-        
-        Text("LIST OF USERS")
             .padding()
             .navigationTitle("SwiftUI Rylo")
             .toolbar {

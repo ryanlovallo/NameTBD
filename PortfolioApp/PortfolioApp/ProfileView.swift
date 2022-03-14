@@ -19,24 +19,25 @@ struct ProfileView: View {
     var email = "ryan@gmail.com"
     
     var body: some View {
-        
-        ScrollView {
-            VStack(alignment: .leading, spacing: 10) {
-                Group {
+    
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 10) {
                     
                     Text(username).bold().font(.largeTitle)
-                    // REPLACE rylo96 with "profile.username" when the time comes
                     
-                    Button(action: { print("Edit profile")} ) {
-                        Text("**Edit**").padding().border(Color.black)
+                    NavigationLink(destination: EditProfileView()) {
+                        Text("Edit")
                     }
                     
-                    Divider()
-                    Text("**Job title:** \(jobtitle)")
-                    Text("**Location:** \(loc)")
-                    
-                    Divider()
-                    Text("Bio").bold()
+                    Group {
+                        Divider()
+                        Text("**Job title:** \(jobtitle)")
+                        Text("**Location:** \(loc)")
+                        
+                        Divider()
+                        Text("Bio").bold()
+                    }
                     
                     Text(bio).padding().border(Color.black)
                     Divider()
@@ -45,43 +46,40 @@ struct ProfileView: View {
                         Text("**Phone number**: \(number)")
                         Text("**Email**: \(email)")
                     }
-                }
-                
-                
-                
-            }
-        }
-            .padding()
-            .navigationTitle("SwiftUI Rylo")
-            .toolbar {
-                ToolbarItemGroup(placement: .bottomBar) {
-                    
-                    ZStack {
-                        Button(action: {
-                            self.profileViewType = "home"
-                        }) {
-                            Text("Home")
-                        }
-                    }
-                    
-                    ZStack {
-                        Button(action: {
-                            self.profileViewType = "likedusers"
-                        }) {
-                            Text("Liked Users")
-                        }
-                    }
-                    
-                    ZStack {
-                        Button(action: {
-                            self.profileViewType = "profile"
-                        }) {
-                            Text("Profile")
-                        }
-                    }
 
                 }
             }
+                .padding()
+                .toolbar {
+                    ToolbarItemGroup(placement: .bottomBar) {
+                        
+                        ZStack {
+                            Button(action: {
+                                self.profileViewType = "home"
+                            }) {
+                                Text("Home")
+                            }
+                        }
+                        
+                        ZStack {
+                            Button(action: {
+                                self.profileViewType = "likedusers"
+                            }) {
+                                Text("Liked Users")
+                            }
+                        }
+                        
+                        ZStack {
+                            Button(action: {
+                                self.profileViewType = "profile"
+                            }) {
+                                Text("Profile")
+                            }
+                        }
+
+                    }
+                }
+        }
     }
 }
 //
