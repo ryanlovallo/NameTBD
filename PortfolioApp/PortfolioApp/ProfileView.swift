@@ -10,8 +10,47 @@ import SwiftUI
 struct ProfileView: View {
     @Binding var profileViewType: String
     
+    var username = "Rylo96"
+    var jobtitle = "Master debater"
+    var loc = "Club space, miami"
+    var bio = "It Means bad kid random. This is used in video games when a person gets a random kid on their team and he is bad at the game. Look at this BK Randy on our team, he is so terrible."
+    
+    var number = "69-6969-69"
+    var email = "ryan@gmail.com"
+    
     var body: some View {
-        Text("This will be the interface of someone's profile")
+        
+        ScrollView {
+            VStack(alignment: .leading, spacing: 10) {
+                Group {
+                    
+                    Text(username).bold().font(.largeTitle)
+                    // REPLACE rylo96 with "profile.username" when the time comes
+                    
+                    Button(action: { print("Edit profile")} ) {
+                        Text("**Edit**").padding().border(Color.black)
+                    }
+                    
+                    Divider()
+                    Text("**Job title:** \(jobtitle)")
+                    Text("**Location:** \(loc)")
+                    
+                    Divider()
+                    Text("Bio").bold()
+                    
+                    Text(bio).padding().border(Color.black)
+                    Divider()
+                    Group {
+                        Text("Contact Information").bold().font(.title)
+                        Text("**Phone number**: \(number)")
+                        Text("**Email**: \(email)")
+                    }
+                }
+                
+                
+                
+            }
+        }
             .padding()
             .navigationTitle("SwiftUI Rylo")
             .toolbar {
