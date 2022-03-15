@@ -11,17 +11,21 @@ struct LikedUsersView: View {
     
     @Binding var usersViewType: String
     @ObservedObject var store = ProfileStore.shared
+    
     // hardcoded
     // var likedUserhardcode: LikedUsers = LikedUsers(name: "Rylo")
     
     var body: some View {
-        
-        // likedUserhardcode: LikedUsers
+
         NavigationView {
-            List(store.profiles.indices, id: \.self) {
-                // NavigationLink(destination: OtherUserView()) {
-                LikedUserRow(likedUser: store.profiles[$0])
-                 // }
+            
+            List {
+                ForEach(store.profiles, id: \.userID) { rw in
+                    let _ = print("fuck")
+                    let _ = print(rw)
+                    LikedUserRow(likedUser: rw)
+//                    Text(rw.username!)
+                }
             }
             .refreshable {
                 store.getLikes(id: "10")
@@ -29,9 +33,8 @@ struct LikedUsersView: View {
             .onAppear {
                 store.getLikes(id: "10")
             }
-        
+
         }
-        
         
             .padding()
             .navigationTitle("SwiftUI Rylo")

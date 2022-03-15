@@ -88,26 +88,32 @@ final class ProfileStore: ObservableObject {
                 print("getlikes: HTTP STATUS: \(httpStatus.statusCode)")
                 return
             }
+
             
-            guard let jsonObj = try? JSONSerialization.jsonObject(with: data) as? [String:Any] else {
+            guard let jsonObj = try? JSONSerialization.jsonObject(with: data) as? [String : Any] else {
                 print("getlikes: failed JSON deserialization")
                 return
             }
-            // let profsReceived = jsonObj["users"] as? [[String?]] ?? []
-            let profsReceived = jsonObj["users"] as? [[String?]] ?? []
-            print(profsReceived)
-            print("What is should be")
-            print(jsonObj["users"])
-            // print(jsonObj["users"])
+            print("hi")
+            let profsReceived = jsonObj["users"] as? [[Any]] ?? []
+            
             DispatchQueue.main.async {
                 self.profiles = [Profile]()
-                
+                print("XXXXX")
                 for profEntry in profsReceived {
                     print(1)
+                    
+                    let usrid = String(describing: profEntry[0])
+                    let usrname = String(describing: profEntry[1])
+                    let nmbr = String(describing: profEntry[2])
+                    let prfpic = String(describing: profEntry[3])
+                    let eml = String(describing: profEntry[4])
+                    let bioos = String(describing: profEntry[5])
+                    
                     if profEntry.count == self.nFields {
-                        self.profiles.append(Profile(userID: profEntry[0], username: profEntry[1], number: profEntry[2], ProfPick: profEntry[3], email: profEntry[4], bio: profEntry[5]))
+                        self.profiles.append(Profile(userID: usrid, username: usrname, number: nmbr, ProfPick: prfpic, email: eml, bio: bioos))
                         print(self.profiles)
-                        
+
                     } else {
                         print("getlikes: Received unexpected number of fields: \(profEntry.count) instead of \(self.nFields).")
                     }
