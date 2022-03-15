@@ -17,7 +17,7 @@ struct LikedUserRow: View {
     var body: some View {
         VStack(alignment: .leading) {
             
-            NavigationLink(destination: OtherUserView()) {
+            NavigationLink(destination: OtherUserView(idnum: likedUser.userID!)) {
                 HStack {
                     if let name = likedUser.username {
                         Text(name).padding(EdgeInsets(top: 8, leading: 0, bottom: 6, trailing: 0))

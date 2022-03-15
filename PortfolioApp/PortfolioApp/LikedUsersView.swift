@@ -21,17 +21,15 @@ struct LikedUsersView: View {
             
             List {
                 ForEach(store.profiles, id: \.userID) { rw in
-                    let _ = print("fuck")
-                    let _ = print(rw)
                     LikedUserRow(likedUser: rw)
 //                    Text(rw.username!)
                 }
             }
             .refreshable {
-                store.getLikes(id: "10")
+                store.getLikes(id: "10")    // 10 should be the user of the device's ID
             }
             .onAppear {
-                store.getLikes(id: "10")
+                store.getLikes(id: "10")    // 10 should be the user of the device's ID
             }
 
         }

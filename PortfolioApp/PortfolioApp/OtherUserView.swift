@@ -8,22 +8,32 @@
 import SwiftUI
 
 struct OtherUserView: View {
+    @ObservedObject var store = ProfileStore.shared
     
-    
-    var username = "OtherUser69"
-    var jobtitle = "pianist"
-    var loc = "Still club space, miami"
-    var bio = "A guy with no shoulders/ muscle mass. Squids often think they are much larger than they are. They over compensate with tough talk and swinging arms. Their appearance is like that of a squid, due to their small frame and comparatively long limbs."
-    
-    var number = "69-6969-69"
-    var email = "otheruser69@gmail.com"
+    @State var idnum : String
     
     var body: some View {
         
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
+                
+                let _ = print("uh")
+//                let _ = print(store.prof)
+                
+                let username : String = store.prof.username ?? "error"
+                let number : String = store.prof.number ?? "error"
+                let email : String = store.prof.email ?? "error"
+                let jobtitle : String = store.prof.jobtitle ?? "error"
+                let age : String = store.prof.age ?? "error"
+                let gender : String = store.prof.gender ?? "error"
+                let industry : String = store.prof.industry ?? "error"
+                let education : String = store.prof.education ?? "error"
+                let interests : String = store.prof.interests ?? "error"
+                let bio : String = store.prof.bio ?? "error"
+                let profpic : String = store.prof.profpic ?? "error"
+                let loc : String = store.prof.loc ?? "error"
+                
                 Group {
-
                     Text(username).bold().font(.largeTitle)
                     // REPLACE rylo96 with "profile.username" when the time comes
 
@@ -42,10 +52,12 @@ struct OtherUserView: View {
                         Text("**Email**: \(email)")
                     }
                 }
-
-
-
             }
+        }.refreshable {
+            store.getProfile(id: idnum)
+        }
+        .onAppear {
+            store.getProfile(id: idnum)
         }
     }
 }
