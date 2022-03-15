@@ -24,6 +24,21 @@ struct ProfileView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     
+                    // ONCE WE HAVE A CALL TO THE BACKEND, REPLACE THESE VALUES
+                    let username : String = "Rylo96" ?? "error"
+                    let number : String = "420-4231-6953" ?? "error"
+                    let email : String = "ryanlov@yahoo.com" ?? "error"
+                    let jobtitle : String = "yuri engineer" ?? "error"
+                    let age : String = "30" ?? "error"
+                    let gender : String = "male" ?? "error"
+                    let industry : String = "software" ?? "error"
+                    let education : String = "flint college" ?? "error"
+                    let interests : String = "sicing, going OC" ?? "error"
+                    let bio : String = "just tryna find a group of friends I can vibe with on a chill level" ?? "error"
+                    let profpic : String = "idk" ?? "error"
+                    let loc : String = "yellow house" ?? "error"
+                    
+                    
                     Text(username).bold().font(.largeTitle)
                     
                     NavigationLink(destination: EditProfileView()) {
@@ -32,21 +47,31 @@ struct ProfileView: View {
                     
                     Group {
                         Divider()
-                        Text("**Job title:** \(jobtitle)")
                         Text("**Location:** \(loc)")
+                        Text("**Industry:** \(industry)")
+                        Text("**Job title:** \(jobtitle)")
                         
-                        Divider()
-                        Text("Bio").bold()
-                    }
-                    
-                    Text(bio).padding().border(Color.black)
-                    Divider()
-                    Group {
-                        Text("Contact Information").bold().font(.title)
-                        Text("**Phone number**: \(number)")
-                        Text("**Email**: \(email)")
-                    }
 
+                        Divider()
+                        Text("Bio:").bold()
+
+                        Text(bio).padding().border(Color.black)
+                        Group {
+                        
+                            Text("**Interests**: \(interests)")
+                            Divider()
+                            
+                            Text("**Age**: \(age)")
+                            Text("**Gender**: \(gender)")
+                            Text("**Education**: \(education)")
+                    
+                            Divider()
+                        
+                            Text("Contact Information").bold().font(.title)
+                            Text("**Email**: \(email)")
+                            Text("**Phone number**: \(number)")
+                        }
+                    }
                 }
             }
                 .padding()
