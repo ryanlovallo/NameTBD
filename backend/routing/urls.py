@@ -24,6 +24,5 @@ urlpatterns = [
     path('likeprofile/', views.likeprofile, name='likeprofile'), 
     path('createuser/',views.createuser, name='createuser'),
     path('editprofile/', views.editprofile, name='editprofile'),
-    path('editbio/', views.editbio, name='editbio'),
     path('getprofile/', views.getprofile, name='getprofile'),
 ]

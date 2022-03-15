@@ -66,10 +66,12 @@ def getprofile(request):
         HttpResponse(status=404)
     lookup = request.GET['id']
     cursor = connection.cursor()
-    cursor.execute('SELECT * FROM users where userID = (%s);',(lookup,))
-    profile = cursor.fetchall()
+    cursor.execute('SELECT name, phonenum, email FROM users where userID = (%s);',(lookup,))
+    user_info = cursor.fetchall()[0]
+    cursor.execute('SELECT * FROM info where userID = (%s);',(lookup,))
+    info_info = cursor.fetchall()[0]
     response = {}
-    response['user'] = profile
+    response['user'] = user_info + info_info
     return JsonResponse(response)
 
 
