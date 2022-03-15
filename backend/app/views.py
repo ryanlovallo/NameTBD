@@ -48,55 +48,16 @@ def editprofile(request):
     gender = json_data['gender']
     industry = json_data['industry']
     education = json_data['education']
-    city = json_data['city']
-    state = json_data['state']
+    location = json_data['location']
     interests = json_data['interests']
-    attr = [userID, employer, age, gender, industry, education, city, state, interests]
+    bio = json_data['bio']
+    profpic = json_data['profpic']
+    attr = [employer, age, gender, industry, education, interests, bio, profpic, location, userID]
     cursor = connection.cursor()
     cursor.execute(
-        "SELECT * FROM info  WHERE userid = (%s);", (userID,)
+        "UPDATE info SET employer=(%s), age=(%s), gender=(%s), industry=(%s), education=(%s), interests=(%s), bio=(%s), profpic=(%s), location=(%s)  WHERE userid=(%s);",tuple(attr)
     )
-    current = cursor.fetchall()
-    if len(current) == 0:
-        cursor.execute(
-            "INSERT INTO info (userid, employer, age, gender, industry, education, city, state, interests) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s);",tuple(attr)
-        )
-    else:
-        attr.pop(0)
-        attr.append(userID)
-        if not employer:
-            attr[0] = current[0]['employer']
-        if not age:
-            attr[1] = current[0]['age']
-        if not gender:
-            attr[2] = current[0]['gender']
-        if not industry:
-            attr[3] = current[0]['industry']
-        if not education:
-            attr[4] = current[0]['education']
-        if not city:
-            attr[5] = current[0]['city']
-        if not state:
-            attr[6] = current[0]['state']
-        if not interests:
-            attr[7] = current[0]['interests']
-        cursor.execute(
-            "UPDATE info SET employer=(%s), age=(%s), gender=(%s), industry=(%s), education=(%s), city=(%s), state=(%s), interests=(%s)  WHERE userid=(%s);",tuple(attr)
-        )
     return JsonResponse({})
-
-
-@csrf_exempt
-def editbio(request):
-    if request.method != "POST":
-        HttpResponse(status=404)
-    json_data = json.loads(request.body)
-    user = json_data['userID']
-    bio = json_data['bio']
-    cursor = connection.cursor()
-    cursor.execute("UPDATE users SET bio=(%s) WHERE userid=(%s);", (bio,user))
-    response = {}
-    return JsonResponse(response)
 
 
 @csrf_exempt
@@ -140,10 +101,9 @@ def createuser(request):
     password = json_data['password']
     username = json_data['username']
     phonenum = json_data['number']
-    profpic = json_data['profpic']
+    tags = ' '
     email = json_data['email']
-    tags = " "
-    bio = " "
     cursor = connection.cursor()
-    cursor.execute('INSERT INTO users (userid, name, phonenum, email, password, bio, tags, profpic) VALUES(%s,%s,%s,%s,%s,%s,%s,%s);',(userid, username, phonenum, email, password, bio, tags, profpic))
+    cursor.execute('INSERT INTO users (userid, name, phonenum, email, password, tags) VALUES(%s,%s,%s,%s,%s,%s);',(userid, username, phonenum, email, password, tags))
+    cursor.execute('INSERT INTO info VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);', (userid, " ", 0, " ", " ", " ", " ", " ", " ", " "))
     return JsonResponse({})
