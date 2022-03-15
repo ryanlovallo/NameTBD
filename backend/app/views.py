@@ -11,11 +11,11 @@ from django.core.files.storage import FileSystemStorage
 def getusers(request):
     if request.method != "GET":
         HttpResponse(status=404)
-    lookup = request.GET['ids']
+    lookup = request.GET.getlist('id')
     cursor = connection.cursor()
     all_users = []
     for user in lookup:
-        cursor.execute('SELECT * FROM users WHERE userID = (%s);',(user,))
+        cursor.execute('SELECT * FROM users WHERE userid = (%s);',(user,))
         to_add = cursor.fetchall()
         if not to_add:
             continue
