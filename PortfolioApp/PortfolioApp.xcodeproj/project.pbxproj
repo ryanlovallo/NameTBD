@@ -18,6 +18,7 @@
 		2FA8220D27DFE506005FF430 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA8220C27DFE505005FF430 /* ContentView.swift */; };
 		350AF19227DFECEB00A1F796 /* LikedUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AF19127DFECEB00A1F796 /* LikedUsers.swift */; };
 		350AF19427DFEE0D00A1F796 /* LikedUserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AF19327DFEE0D00A1F796 /* LikedUserRow.swift */; };
+		AA95B84027E018CC00D64520 /* ConnectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95B83F27E018CC00D64520 /* ConnectionHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		2FA8220C27DFE505005FF430 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		350AF19127DFECEB00A1F796 /* LikedUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUsers.swift; sourceTree = "<group>"; };
 		350AF19327DFEE0D00A1F796 /* LikedUserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUserRow.swift; sourceTree = "<group>"; };
+		AA95B83F27E018CC00D64520 /* ConnectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 		2FA821F727DFD39B005FF430 /* PortfolioApp */ = {
 			isa = PBXGroup;
 			children = (
+				AA95B83F27E018CC00D64520 /* ConnectionHandler.swift */,
 				2FA821F827DFD39B005FF430 /* PortfolioAppApp.swift */,
 				2FA8220627DFD3BF005FF430 /* HomeView.swift */,
 				2FA8220827DFD3CE005FF430 /* LikedUsersView.swift */,
@@ -164,6 +167,7 @@
 				2FA8220D27DFE506005FF430 /* ContentView.swift in Sources */,
 				2F070BA927DFF78600196BF6 /* OtherUserView.swift in Sources */,
 				2FA8220B27DFD3EF005FF430 /* ProfileView.swift in Sources */,
+				AA95B84027E018CC00D64520 /* ConnectionHandler.swift in Sources */,
 				2FA821F927DFD39B005FF430 /* PortfolioAppApp.swift in Sources */,
 				350AF19227DFECEB00A1F796 /* LikedUsers.swift in Sources */,
 				2FA8220927DFD3CE005FF430 /* LikedUsersView.swift in Sources */,
@@ -300,6 +304,7 @@
 				DEVELOPMENT_TEAM = 72TQ5DQ2N3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Portfolio would like you discover users nearby";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -329,6 +334,7 @@
 				DEVELOPMENT_TEAM = 72TQ5DQ2N3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Portfolio would like you discover users nearby";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
