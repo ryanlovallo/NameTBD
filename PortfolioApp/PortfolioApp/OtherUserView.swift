@@ -19,9 +19,6 @@ struct OtherUserView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
                 
-                let _ = print("uh")
-//                let _ = print(store.prof)
-                
                 let username : String = store.prof.username ?? "error"
                 let number : String = store.prof.number ?? "error"
                 let email : String = store.prof.email ?? "error"
@@ -34,6 +31,7 @@ struct OtherUserView: View {
                 let bio : String = store.prof.bio ?? "error"
                 let profpic : String = store.prof.profpic ?? "error"
                 let loc : String = store.prof.loc ?? "error"
+                
                 
                 Group {
                     Text(username).bold().font(.largeTitle)

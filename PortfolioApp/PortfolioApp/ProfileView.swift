@@ -10,6 +10,9 @@ import SwiftUI
 struct ProfileView: View {
     @Binding var profileViewType: String
     
+    @ObservedObject var store = ProfileStore.shared
+    @State var idnum : String = "10"      // TODO:  THIS IS THE ID OF THE USER THAT IS OPERATING THE APP
+    
     var username = "Rylo96"
     var jobtitle = "Master debater"
     var loc = "Club space, miami"
@@ -25,20 +28,19 @@ struct ProfileView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     
                     // ONCE WE HAVE A CALL TO THE BACKEND, REPLACE THESE VALUES
-                    let username : String = "Rylo96" ?? "error"
-                    let number : String = "420-4231-6953" ?? "error"
-                    let email : String = "ryanlov@yahoo.com" ?? "error"
-                    let jobtitle : String = "yuri engineer" ?? "error"
-                    let age : String = "30" ?? "error"
-                    let gender : String = "male" ?? "error"
-                    let industry : String = "software" ?? "error"
-                    let education : String = "flint college" ?? "error"
-                    let interests : String = "sicing, going OC" ?? "error"
-                    let bio : String = "just tryna find a group of friends I can vibe with on a chill level" ?? "error"
-                    let profpic : String = "idk" ?? "error"
-                    let loc : String = "yellow house" ?? "error"
-                    
-                    
+                    let username : String = store.prof.username ?? "error"
+                    let number : String = store.prof.number ?? "error"
+                    let email : String = store.prof.email ?? "error"
+                    let jobtitle : String = store.prof.jobtitle ?? "error"
+                    let age : String = store.prof.age ?? "error"
+                    let gender : String = store.prof.gender ?? "error"
+                    let industry : String = store.prof.industry ?? "error"
+                    let education : String = store.prof.education ?? "error"
+                    let interests : String = store.prof.interests ?? "error"
+                    let bio : String = store.prof.bio ?? "error"
+                    let profpic : String = store.prof.profpic ?? "error"
+                    let loc : String = store.prof.loc ?? "error"
+
                     Text(username).bold().font(.largeTitle)
                     
                     NavigationLink(destination: EditProfileView()) {
@@ -104,7 +106,12 @@ struct ProfileView: View {
 
                     }
                 }
-        }
+            }.refreshable {
+                store.getProfile(id: idnum)
+            }
+            .onAppear {
+                store.getProfile(id: idnum)
+            }
     }
 }
 //
