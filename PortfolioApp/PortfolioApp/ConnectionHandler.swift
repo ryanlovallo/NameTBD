@@ -5,6 +5,8 @@
 //  Created by Christian DeVivo on 3/14/22.
 //
 
+//Note to self. Need to change where the ConnectionHandler is initiated, because leaving the page kills it
+//going back and forth from the home page in Home View
 import Foundation
 import MultipeerConnectivity
 
@@ -20,6 +22,8 @@ class ConnectionHandler: NSObject, ObservableObject {
           encryptionPreference:  MCEncryptionPreference.none)
         super.init()
         nearbyServiceAdvertiser.delegate = self
+        //Current functionality is that users are always advertising their profile
+        startAdvertising()
     }
     
     private var nearbyServiceBrowser = MCNearbyServiceBrowser(
@@ -39,14 +43,26 @@ class ConnectionHandler: NSObject, ObservableObject {
       nearbyServiceBrowser.stopBrowsingForPeers()
     }
     
-    var isAdvertising: Bool = false {
+    func startAdvertising()
+    {
+        nearbyServiceAdvertiser.startAdvertisingPeer()
+        print("Now advertising your profile")
+    }
+    
+    func stopAdvertising()
+    {
+        nearbyServiceAdvertiser.stopAdvertisingPeer()
+        print("Stopped advertising your profile")
+    }
+    
+    var isBrowsing: Bool = false {
       didSet {
-        if isAdvertising {
-          nearbyServiceAdvertiser.startAdvertisingPeer()
-          print("Started advertising")
+        if isBrowsing {
+          nearbyServiceBrowser.startBrowsingForPeers()
+          print("Started browsing for users")
         } else {
-          nearbyServiceAdvertiser.stopAdvertisingPeer()
-          print("Stopped advertising")
+          nearbyServiceBrowser.stopBrowsingForPeers()
+          print("Stopped browsing for users")
         }
       }
     }

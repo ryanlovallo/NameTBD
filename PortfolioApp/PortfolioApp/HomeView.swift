@@ -13,7 +13,7 @@ struct HomeView: View {
     @ObservedObject var connec = ConnectionHandler()
     
     var body: some View {
-        Toggle("Activate Proximity", isOn: $connec.isAdvertising)
+        Toggle("Activate Proximity", isOn: $connec.isBrowsing)
         Text("ACTIVATE CONNECTION")
             .padding()
             .navigationTitle("SwiftUI Rylo")
