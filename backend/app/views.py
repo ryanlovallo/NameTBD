@@ -11,7 +11,6 @@ from django.core.files.storage import FileSystemStorage
 def getusers(request):
     if request.method != "GET":
         HttpResponse(status=404)
-    j
     lookup = request.GET['ids']
     cursor = connection.cursor()
     all_users = []
@@ -145,4 +144,4 @@ def createuser(request):
     email = json_data['email']
     cursor = connection.cursor()
     cursor.execute('INSERT INTO users (userid, name, phonenum, email, password, profpic) VALUES(%s,%s,%s,%s,%s,%s);',(userid, username, phonenum, email, password, profpic))
-
+    return JsonResponse({})
