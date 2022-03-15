@@ -18,6 +18,8 @@
 		2FA8220D27DFE506005FF430 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA8220C27DFE505005FF430 /* ContentView.swift */; };
 		350AF19227DFECEB00A1F796 /* LikedUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AF19127DFECEB00A1F796 /* LikedUsers.swift */; };
 		350AF19427DFEE0D00A1F796 /* LikedUserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AF19327DFEE0D00A1F796 /* LikedUserRow.swift */; };
+		350AF19627E012EF00A1F796 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AF19527E012EF00A1F796 /* ProfileStore.swift */; };
+		350AF19827E016C100A1F796 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AF19727E016C100A1F796 /* Profile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		2FA8220C27DFE505005FF430 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		350AF19127DFECEB00A1F796 /* LikedUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUsers.swift; sourceTree = "<group>"; };
 		350AF19327DFEE0D00A1F796 /* LikedUserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUserRow.swift; sourceTree = "<group>"; };
+		350AF19527E012EF00A1F796 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
+		350AF19727E016C100A1F796 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 				2FA8220C27DFE505005FF430 /* ContentView.swift */,
 				2F070BA827DFF78600196BF6 /* OtherUserView.swift */,
 				2F070BAA27DFFEA600196BF6 /* EditProfileView.swift */,
+				350AF19527E012EF00A1F796 /* ProfileStore.swift */,
+				350AF19727E016C100A1F796 /* Profile.swift */,
 				2FA8220A27DFD3EF005FF430 /* ProfileView.swift */,
 				2FA821FC27DFD39D005FF430 /* Assets.xcassets */,
 				2FA821FE27DFD39D005FF430 /* Preview Content */,
@@ -159,12 +165,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F070BAB27DFFEA600196BF6 /* EditProfileView.swift in Sources */,
+				350AF19627E012EF00A1F796 /* ProfileStore.swift in Sources */,
 				350AF19427DFEE0D00A1F796 /* LikedUserRow.swift in Sources */,
 				2FA8220727DFD3BF005FF430 /* HomeView.swift in Sources */,
 				2FA8220D27DFE506005FF430 /* ContentView.swift in Sources */,
 				2F070BA927DFF78600196BF6 /* OtherUserView.swift in Sources */,
 				2FA8220B27DFD3EF005FF430 /* ProfileView.swift in Sources */,
 				2FA821F927DFD39B005FF430 /* PortfolioAppApp.swift in Sources */,
+				350AF19827E016C100A1F796 /* Profile.swift in Sources */,
 				350AF19227DFECEB00A1F796 /* LikedUsers.swift in Sources */,
 				2FA8220927DFD3CE005FF430 /* LikedUsersView.swift in Sources */,
 			);
