@@ -11,7 +11,7 @@ from django.core.files.storage import FileSystemStorage
 def getusers(request):
     if request.method != "GET":
         HttpResponse(status=404)
-    lookup = request.GET.getlist('id')
+    lookup = request.GET.getlist('ids')
     cursor = connection.cursor()
     all_users = []
     for user in lookup:
@@ -29,13 +29,24 @@ def likeprofile(request):
     if request.method != "POST":
         HttpResponse(status=404)
     json_data = json.loads(request.body)
-    user1 = json_data['userID']
-    user2 = json_data['liked']
+    user1 = json_data['user1']
+    user2 = json_data['user2']
     cursor = connection.cursor()
     cursor.execute("INSERT INTO SAVED (userID, saved_userID) VALUES(%s,%s);", (user1,user2))
     response = {}
     return JsonResponse(response)
 
+
+@csrf_exempt
+def unlikeprofile(request):
+    if request.method != "POST":
+        HttpResponse(status=404)
+    json_data = json.loads(request.body)
+    user1 = json_data['user1']
+    user2 = json_data['user2']
+    cursor = connection.cursor()
+    cursor.execute("DELETE FROM saved WHERE userID=(%s) AND saved_userID=(%s);", (user1,user2))
+    return JsonResponse({})
 
 @csrf_exempt
 def editprofile(request):
@@ -65,13 +76,15 @@ def getprofile(request):
     if request.method != "GET":
         HttpResponse(status=404)
     lookup = request.GET['id']
+    logname = request.GET['logname']
     cursor = connection.cursor()
     cursor.execute('SELECT name, phonenum, email FROM users where userID = (%s);',(lookup,))
     user_info = cursor.fetchall()[0]
     cursor.execute('SELECT * FROM info where userID = (%s);',(lookup,))
     info_info = cursor.fetchall()[0]
+    cursor.execute('SELECT * FROM saved WHERE userID=(%s) AND saved_userID=(%s);', (logname, lookup))
     response = {}
-    response['user'] = user_info + info_info
+    response['user'] = user_info + info_info + (len(cursor.fetchall()) > 0,)
     return JsonResponse(response)
 
 
