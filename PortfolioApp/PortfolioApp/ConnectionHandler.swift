@@ -73,6 +73,7 @@ extension ConnectionHandler: MCNearbyServiceBrowserDelegate {
     if !availableUsers.contains(peerID) {
       availableUsers.append(peerID)
     }
+    print("New. User. DETECTED! in ur vicin")
   }
     //This function is called when a user is no longer available I think? not totally important yet
   func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
