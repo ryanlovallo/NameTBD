@@ -24,10 +24,10 @@ struct LikedUsersView: View {
                  // }
             }
             .refreshable {
-                store.getLikes()
+                store.getLikes(id: "10")
             }
             .onAppear {
-                store.getLikes()
+                store.getLikes(id: "10")
             }
         
         }

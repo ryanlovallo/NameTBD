@@ -66,15 +66,18 @@ final class ProfileStore: ObservableObject {
     }
     
     
-    func getLikes() {
-        guard let apiUrl = URL(string: serverUrl+"getlikes/") else {
+    func getLikes(id: String) {
+        print(id)
+        guard let apiUrl = URL(string: serverUrl+"getlikes"+"?id="+id) else {
             print("getlikes: Bad URL")
             return
         }
         
+        
         var request = URLRequest(url: apiUrl)
+        
         request.httpMethod = "GET"
-
+        // request.httpHeader = jsonData
         URLSession.shared.dataTask(with: request) { data, response, error in
             
             guard let data = data, error == nil else {
@@ -90,14 +93,20 @@ final class ProfileStore: ObservableObject {
                 print("getlikes: failed JSON deserialization")
                 return
             }
-            let profsReceived = jsonObj["chatts"] as? [[String?]] ?? []
+            // let profsReceived = jsonObj["users"] as? [[String?]] ?? []
+            let profsReceived = jsonObj["users"] as? [[String?]] ?? []
+            print(profsReceived)
+            print("What is should be")
+            print(jsonObj["users"])
+            // print(jsonObj["users"])
             DispatchQueue.main.async {
                 self.profiles = [Profile]()
                 
                 for profEntry in profsReceived {
-                    
+                    print(1)
                     if profEntry.count == self.nFields {
                         self.profiles.append(Profile(userID: profEntry[0], username: profEntry[1], number: profEntry[2], ProfPick: profEntry[3], email: profEntry[4], bio: profEntry[5]))
+                        print(self.profiles)
                         
                     } else {
                         print("getlikes: Received unexpected number of fields: \(profEntry.count) instead of \(self.nFields).")
@@ -105,6 +114,7 @@ final class ProfileStore: ObservableObject {
                    
                 }
             }
+            // print(self.profiles)
         }.resume()
     }
     
