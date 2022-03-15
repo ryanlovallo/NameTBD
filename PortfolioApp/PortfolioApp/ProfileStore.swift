@@ -127,7 +127,7 @@ final class ProfileStore: ObservableObject {
     
     func getProfile(id: String) {
         print(id)
-        guard let apiUrl = URL(string: serverUrl+"getprofile"+"?id="+id) else {
+        guard let apiUrl = URL(string: serverUrl+"getprofile"+"?id="+id+"&logname=10") else {
             print("getprofile: Bad URL")
             return
         }
@@ -178,13 +178,97 @@ final class ProfileStore: ObservableObject {
             self.prof.bio = String(describing: profsReceived[10])
             self.prof.profpic = String(describing: profsReceived[11])
             self.prof.loc = String(describing: profsReceived[12])
+            self.prof.liked = String(describing: profsReceived[13])
             
-            print(self.prof)
+            print("Liked value:", self.prof.liked)
             DispatchQueue.main.async {
 //                self.prof = profsReceived
                 print("XXXXX")
             }
         }.resume()
+    }
+    
+    
+    
+    func postLike(_ targetID: String) {
+        let jsonObj = ["user1": "10",
+                       "user2": targetID,
+                       
+        ]
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj) else {
+            print("postLike: jsonData serialization error")
+            return
+        }
+// Change here
+        guard let apiUrl = URL(string: serverUrl+"likeprofile/") else {
+            print("postLike: Bad URL")
+            return
+        }
+        
+        var request = URLRequest(url: apiUrl)
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+                   guard let _ = data, error == nil else {
+                       print("postLike: NETWORKING ERROR")
+                       return
+                   }
+
+                   if let httpStatus = response as? HTTPURLResponse {
+                       if httpStatus.statusCode != 200 {
+                           print("postLike: HTTP STATUS: \(httpStatus.statusCode)")
+                           return
+                       } else {
+                           // NEEDS UNCOMMENTED
+                           // self.getProfile()
+                       }
+                   }
+               }.resume()
+        
+        
+        
+    }
+    
+    
+    func postUnlike(_ targetID: String) {
+        let jsonObj = ["user1": "10",
+                       "user2": targetID,
+                       
+        ]
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj) else {
+            print("postUnLike: jsonData serialization error")
+            return
+        }
+// Change here
+        guard let apiUrl = URL(string: serverUrl+"unlikeprofile/") else {
+            print("postUnLike: Bad URL")
+            return
+        }
+        
+        var request = URLRequest(url: apiUrl)
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+                   guard let _ = data, error == nil else {
+                       print("postUnLike: NETWORKING ERROR")
+                       return
+                   }
+
+                   if let httpStatus = response as? HTTPURLResponse {
+                       if httpStatus.statusCode != 200 {
+                           print("postUnlike: HTTP STATUS: \(httpStatus.statusCode)")
+                           return
+                       } else {
+                           // NEEDS UNCOMMENTED
+                           // self.getProfile()
+                       }
+                   }
+               }.resume()
+        
+        
+        
     }
     
     

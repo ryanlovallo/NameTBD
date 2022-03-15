@@ -21,4 +21,5 @@ struct UserInfo {
     var bio: String?
     var profpic: String?
     var loc: String?
+    var liked: String?
 }
