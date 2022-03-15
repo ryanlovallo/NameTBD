@@ -29,7 +29,7 @@ class ConnectionHandler: NSObject, ObservableObject {
     private var nearbyServiceAdvertiser = MCNearbyServiceAdvertiser(
         peer: MCPeerID(displayName: "Dewey"),
       discoveryInfo: nil,
-      serviceType: "Porfolio")
+      serviceType: "Portfolio")
     
     func startBrowsing() {
       nearbyServiceBrowser.startBrowsingForPeers()
@@ -56,7 +56,6 @@ extension ConnectionHandler: MCNearbyServiceAdvertiserDelegate
 {
     //This function will be called when an invitation is received, which should never happen for our app
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-
     }
 }
 
