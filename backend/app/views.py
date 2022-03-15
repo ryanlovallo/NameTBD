@@ -142,6 +142,8 @@ def createuser(request):
     phonenum = json_data['number']
     profpic = json_data['profpic']
     email = json_data['email']
+    tags = " "
+    bio = " "
     cursor = connection.cursor()
-    cursor.execute('INSERT INTO users (userid, name, phonenum, email, password, profpic) VALUES(%s,%s,%s,%s,%s,%s);',(userid, username, phonenum, email, password, profpic))
+    cursor.execute('INSERT INTO users (userid, name, phonenum, email, password, bio, tags, profpic) VALUES(%s,%s,%s,%s,%s,%s,%s,%s);',(userid, username, phonenum, email, password, bio, tags, profpic))
     return JsonResponse({})
