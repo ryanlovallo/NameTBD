@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EditProfileView: View {
 
+    @State private var presentImporter = false
     
     // @State private var resume = ""
     @State private var jobtitle = "Consultant"
@@ -24,7 +25,19 @@ struct EditProfileView: View {
                     Text("Edit Profile").bold().font(.largeTitle)
                     Group {
                         Divider()
-                        Text("Upload resume: [need to figure out]")
+                        Text("Upload Resume (PDF Only):").bold()
+                        
+                        Button("Upload") {
+                            presentImporter = true
+                        }.fileImporter(isPresented: $presentImporter, allowedContentTypes: [.pdf]) {
+                            result in
+                            switch result {
+                            case.success(let url):
+                                print(url)
+                            case.failure(let error):
+                                print(error)
+                            }
+                        }.padding()
                     }
                     
                     
@@ -51,11 +64,6 @@ struct EditProfileView: View {
                         TextField("\(phone)", text: $phone).border(Color.black).padding()
                     }
                     
-//                    Text("Edit Profile").bold().font(.title)
-//                    Text("**Phone number**: 571-4390-390")
-//                    Text("**Email**: hi@gmail")
-//                    Text("**Phone number**: \(number)")
-//                    Text("**Email**: \(email)")
                 }
 
             }
