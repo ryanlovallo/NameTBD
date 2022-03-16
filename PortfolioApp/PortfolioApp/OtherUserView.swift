@@ -13,6 +13,7 @@ struct OtherUserView: View {
     
     @State var idnum : String
     @State private var isLiked: String = ""
+    // @State private var isLiked: Int = 0
     var body: some View {
         
         
@@ -31,6 +32,7 @@ struct OtherUserView: View {
                 let bio : String = store.prof.bio ?? "error"
                 let profpic : String = store.prof.profpic ?? "error"
                 let loc : String = store.prof.loc ?? "error"
+                var Liked : String = store.prof.liked ?? "error"
                 
                 
                 Group {
@@ -42,18 +44,20 @@ struct OtherUserView: View {
                     Text("**Industry:** \(industry)")
                     Text("**Job title:** \(jobtitle)")
                     
-                    if(isLiked == "0") {
+                    if(Liked == "0") {
                         Button(action: {
                             store.postLike(store.prof.userID ?? "")
-                            isLiked = "1"
+                            Liked = "1"
+                            isLiked = "2"
                         }) { Text("Like")
                             
                         }.padding().border(Color.black)
                     }
-                    else if(isLiked == "1") {
+                    else if(Liked == "1") {
                         Button(action: {
                             store.postUnlike(store.prof.userID ?? "")
-                            isLiked = "0"
+                            Liked = "0"
+                            isLiked = "5"
                         }) { Text("Unlike")
                             
                         }.padding().border(Color.black)
@@ -84,10 +88,16 @@ struct OtherUserView: View {
         }.refreshable {
             store.getProfile(id: idnum)
             self.isLiked = store.prof.liked ?? "error"
+            
         }
         .onAppear {
             store.getProfile(id: idnum)
             self.isLiked = store.prof.liked ?? "error"
         }
+        .onChange(of: isLiked) { value in
+            store.getProfile(id: idnum)
+            self.isLiked = store.prof.liked ?? "error"
+        }
+        
     }
 }

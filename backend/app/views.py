@@ -62,8 +62,15 @@ def editprofile(request):
     location = json_data['location']
     interests = json_data['interests']
     bio = json_data['bio']
-    profpic = json_data['profpic']
-    attr = [employer, age, gender, industry, education, interests, bio, profpic, location, userID]
+    profpic = request.FILES['profpic']
+
+    # do the filename stuff
+    filename = str(userID)+".jpeg"
+    fs = FileSystemStorage()
+    filename = fs.save(filename, profpic)
+    imageurl = fs.url(filename)
+    
+    attr = [employer, age, gender, industry, education, interests, bio, imageurl, location, userID]
     cursor = connection.cursor()
     cursor.execute(
         "UPDATE info SET employer=(%s), age=(%s), gender=(%s), industry=(%s), education=(%s), interests=(%s), bio=(%s), profpic=(%s), location=(%s)  WHERE userid=(%s);",tuple(attr)
