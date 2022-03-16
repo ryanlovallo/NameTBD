@@ -10,21 +10,29 @@ import SwiftUI
 struct LikedUsersView: View {
     
     @Binding var usersViewType: String
+    @ObservedObject var store = ProfileStore.shared
+    
     // hardcoded
-    var likedUserhardcode: LikedUsers = LikedUsers(name: "Rylo")
+    // var likedUserhardcode: LikedUsers = LikedUsers(name: "Rylo")
     
     var body: some View {
-        
-        // likedUserhardcode: LikedUsers
+
         NavigationView {
+            
             List {
-                NavigationLink(destination: OtherUserView()) {
-                    LikedUserRow(likedUser: likedUserhardcode)
+                ForEach(store.profiles, id: \.userID) { rw in
+                    LikedUserRow(likedUser: rw)
+//                    Text(rw.username!)
                 }
             }
-        
+            .refreshable {
+                store.getLikes(id: "10")    // 10 should be the user of the device's ID
+            }
+            .onAppear {
+                store.getLikes(id: "10")    // 10 should be the user of the device's ID
+            }
+
         }
-        
         
             .padding()
             .navigationTitle("SwiftUI Rylo")
