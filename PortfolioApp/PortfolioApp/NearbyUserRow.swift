@@ -15,17 +15,19 @@ struct NearbyUserRow: View {
     
     
     var body: some View {
-        let _ =  print(nearbyUser.displayName)
-        VStack(alignment: .leading) {
-                HStack {
-                    if let name = nearbyUser.displayName {
-                        Text(name).padding(EdgeInsets(top: 8, leading: 0, bottom: 6, trailing: 0))
-                    }
-                    Spacer()
-    
-                }
-            
-        }
         
+        NavigationLink(destination: NearbyProfileView(name: nearbyUser.displayName)) {
+            VStack(alignment: .leading) {
+                    HStack {
+                        if let name = nearbyUser.displayName {
+                            Text(name).padding(EdgeInsets(top: 8, leading: 0, bottom: 6, trailing: 0))
+                        }
+                        Spacer()
+
+                    }
+                
+            }
+        }
     }
 }
+

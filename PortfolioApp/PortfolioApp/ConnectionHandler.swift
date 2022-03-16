@@ -18,7 +18,7 @@ class ConnectionHandler: NSObject, ObservableObject {
     
     @Published var availableUsers: [MCPeerID] = []
     override init(){
-        self.myPeerId = MCPeerID(displayName: "trash man")
+        self.myPeerId = MCPeerID(displayName: "Ryan")
         session = MCSession(
           peer: myPeerId,
           securityIdentity: nil,

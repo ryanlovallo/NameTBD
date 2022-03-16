@@ -24,6 +24,7 @@
 		AA95B84027E018CC00D64520 /* ConnectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95B83F27E018CC00D64520 /* ConnectionHandler.swift */; };
 		C606F37327E16B25004B55E1 /* ProximityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C606F37227E16B25004B55E1 /* ProximityView.swift */; };
 		C606F37527E17459004B55E1 /* NearbyUserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C606F37427E17459004B55E1 /* NearbyUserRow.swift */; };
+		C606F37727E282CE004B55E1 /* NearbyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C606F37627E282CE004B55E1 /* NearbyProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		AA95B83F27E018CC00D64520 /* ConnectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHandler.swift; sourceTree = "<group>"; };
 		C606F37227E16B25004B55E1 /* ProximityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProximityView.swift; sourceTree = "<group>"; };
 		C606F37427E17459004B55E1 /* NearbyUserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyUserRow.swift; sourceTree = "<group>"; };
+		C606F37627E282CE004B55E1 /* NearbyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				2FA821FE27DFD39D005FF430 /* Preview Content */,
 				C606F37227E16B25004B55E1 /* ProximityView.swift */,
 				C606F37427E17459004B55E1 /* NearbyUserRow.swift */,
+				C606F37627E282CE004B55E1 /* NearbyProfileView.swift */,
 			);
 			path = PortfolioApp;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				350AF19227DFECEB00A1F796 /* LikedUsers.swift in Sources */,
 				C606F37327E16B25004B55E1 /* ProximityView.swift in Sources */,
 				2FA8220927DFD3CE005FF430 /* LikedUsersView.swift in Sources */,
+				C606F37727E282CE004B55E1 /* NearbyProfileView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
