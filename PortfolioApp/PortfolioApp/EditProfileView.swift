@@ -23,6 +23,8 @@ struct EditProfileView: View {
     @State private var profpic : String = ""
     @State private var loc : String = ""
     
+    @State private var dummy : Int = 0
+    
     // this is needed for
     init(usrid: String, pimporter: Bool, jt: String, ag: String, gen: String, ind: String, edu: String, intr: String,
             b: String, ppic: String, lc: String) {
@@ -110,9 +112,8 @@ struct EditProfileView: View {
                 Group {
                     Button(action: {
                         // TODO: MAKE A POST REQUEST HERE
-//                        let _ = print(age)
-//                        let _ = print(gender)
-                        print("Make a post call to update the user's information")
+                        self.store.editProfile(usrid: idnum, jt: jobtitle, ag: age, gen: gender, ind: industry, edu: education, intr: interests, b: bio, ppic: profpic, lc: loc)
+                        self.dummy += 1
                     }) {
                         Text("Submit")
                         .padding(40.0).overlay(
@@ -122,15 +123,16 @@ struct EditProfileView: View {
                     }
                     Spacer()
                     Spacer()
-
                 }
-
             }
         }
         .refreshable {
             store.getProfile(id: idnum)
         }
         .onAppear {
+            store.getProfile(id: idnum)
+        }
+        .onChange(of:dummy) { value in
             store.getProfile(id: idnum)
         }
     }

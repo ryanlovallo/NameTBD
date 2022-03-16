@@ -63,9 +63,54 @@ final class ProfileStore: ObservableObject {
                        }
                    }
                }.resume()
+    }
+    
+    
+    func editProfile(usrid: String, jt: String, ag: String, gen: String,
+                       ind: String, edu: String, intr: String, b: String,
+                       ppic: String, lc: String) {
+        let jsonObj = ["userID": usrid,
+                       "employer": jt,
+                       "age": ag,
+                       "gender": gen,
+                       "industry": ind,
+                       "education": edu,
+                       "location": lc,
+                       "interests": intr,
+                       "bio": b,
+                       "profpic": ppic
+        ]
         
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj) else {
+            print("editProfile: jsonData serialization error")
+            return
+        }
+        // Change here
+        guard let apiUrl = URL(string: serverUrl+"editprofile/") else {
+            print("editProfile: Bad URL")
+            return
+        }
         
-        
+        var request = URLRequest(url: apiUrl)
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+                   guard let _ = data, error == nil else {
+                       print("editProfile: NETWORKING ERROR")
+                       return
+                   }
+
+                   if let httpStatus = response as? HTTPURLResponse {
+                       if httpStatus.statusCode != 200 {
+                           print("editProfile: HTTP STATUS: \(httpStatus.statusCode)")
+                           return
+                       } else {
+                           // NEEDS UNCOMMENTED
+                           // self.getProfile()
+                       }
+                   }
+               }.resume()
     }
     
     
