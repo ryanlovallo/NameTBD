@@ -21,6 +21,7 @@
 		350AF19427DFEE0D00A1F796 /* LikedUserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AF19327DFEE0D00A1F796 /* LikedUserRow.swift */; };
 		350AF19627E012EF00A1F796 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AF19527E012EF00A1F796 /* ProfileStore.swift */; };
 		350AF19827E016C100A1F796 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AF19727E016C100A1F796 /* Profile.swift */; };
+		AA95B84027E018CC00D64520 /* ConnectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95B83F27E018CC00D64520 /* ConnectionHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		350AF19327DFEE0D00A1F796 /* LikedUserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUserRow.swift; sourceTree = "<group>"; };
 		350AF19527E012EF00A1F796 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
 		350AF19727E016C100A1F796 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		AA30792427E11C8800D4E8D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AA95B83F27E018CC00D64520 /* ConnectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,8 @@
 		2FA821F727DFD39B005FF430 /* PortfolioApp */ = {
 			isa = PBXGroup;
 			children = (
+				AA30792427E11C8800D4E8D5 /* Info.plist */,
+				AA95B83F27E018CC00D64520 /* ConnectionHandler.swift */,
 				2FA821F827DFD39B005FF430 /* PortfolioAppApp.swift */,
 				2FA8220627DFD3BF005FF430 /* HomeView.swift */,
 				2FA8220827DFD3CE005FF430 /* LikedUsersView.swift */,
@@ -175,6 +180,7 @@
 				2FA8220D27DFE506005FF430 /* ContentView.swift in Sources */,
 				2F070BA927DFF78600196BF6 /* OtherUserView.swift in Sources */,
 				2FA8220B27DFD3EF005FF430 /* ProfileView.swift in Sources */,
+				AA95B84027E018CC00D64520 /* ConnectionHandler.swift in Sources */,
 				2FA821F927DFD39B005FF430 /* PortfolioAppApp.swift in Sources */,
 				350AF19827E016C100A1F796 /* Profile.swift in Sources */,
 				350AF19227DFECEB00A1F796 /* LikedUsers.swift in Sources */,
@@ -309,20 +315,23 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PortfolioApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 72TQ5DQ2N3;
+				DEVELOPMENT_TEAM = H485F393HU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PortfolioApp/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Portfolio would like you discover users nearby";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.umich.rlovallo.PortfolioApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.cplayer524.PortolioApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -335,24 +344,29 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PortfolioApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 72TQ5DQ2N3;
+				DEVELOPMENT_TEAM = H485F393HU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PortfolioApp/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Portfolio would like you discover users nearby";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.umich.rlovallo.PortfolioApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.cplayer524.Portfolio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

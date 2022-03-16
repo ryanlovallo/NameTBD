@@ -8,18 +8,17 @@
 import SwiftUI
 
 struct HomeView: View {
-    
     @Binding var homeViewType: String
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @ObservedObject var connec = ConnectionHandler()
     
     var body: some View {
-
+        Toggle("Activate Proximity", isOn: $connec.isBrowsing)
         Text("ACTIVATE CONNECTION")
             .padding()
             .navigationTitle("SwiftUI Rylo")
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
-                    
                     ZStack {
                         Button(action: {
                             self.homeViewType = "home"
@@ -35,7 +34,6 @@ struct HomeView: View {
                             Text("Liked Users")
                         }
                     }
-                    
                     ZStack {
                         Button(action: {
                             self.homeViewType = "profile"
