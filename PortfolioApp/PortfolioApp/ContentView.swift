@@ -17,7 +17,10 @@ struct ContentView: View {
         }
         else if viewType == "profile" {
             ProfileView(profileViewType: $viewType)
-        } else {
+        }
+        else if viewType == "proximity" {
+            ProximityView(proximityViewType: $viewType)
+        } else{
             HomeView(homeViewType: $viewType)
         }
            

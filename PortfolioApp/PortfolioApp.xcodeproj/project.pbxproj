@@ -22,6 +22,8 @@
 		350AF19627E012EF00A1F796 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AF19527E012EF00A1F796 /* ProfileStore.swift */; };
 		350AF19827E016C100A1F796 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AF19727E016C100A1F796 /* Profile.swift */; };
 		AA95B84027E018CC00D64520 /* ConnectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95B83F27E018CC00D64520 /* ConnectionHandler.swift */; };
+		C606F37327E16B25004B55E1 /* ProximityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C606F37227E16B25004B55E1 /* ProximityView.swift */; };
+		C606F37527E17459004B55E1 /* NearbyUserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C606F37427E17459004B55E1 /* NearbyUserRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		350AF19727E016C100A1F796 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		AA30792427E11C8800D4E8D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AA95B83F27E018CC00D64520 /* ConnectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHandler.swift; sourceTree = "<group>"; };
+		C606F37227E16B25004B55E1 /* ProximityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProximityView.swift; sourceTree = "<group>"; };
+		C606F37427E17459004B55E1 /* NearbyUserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyUserRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,8 @@
 				2FA8220A27DFD3EF005FF430 /* ProfileView.swift */,
 				2FA821FC27DFD39D005FF430 /* Assets.xcassets */,
 				2FA821FE27DFD39D005FF430 /* Preview Content */,
+				C606F37227E16B25004B55E1 /* ProximityView.swift */,
+				C606F37427E17459004B55E1 /* NearbyUserRow.swift */,
 			);
 			path = PortfolioApp;
 			sourceTree = "<group>";
@@ -179,11 +185,13 @@
 				2F070BAD27E1220700196BF6 /* UserInfo.swift in Sources */,
 				2FA8220D27DFE506005FF430 /* ContentView.swift in Sources */,
 				2F070BA927DFF78600196BF6 /* OtherUserView.swift in Sources */,
+				C606F37527E17459004B55E1 /* NearbyUserRow.swift in Sources */,
 				2FA8220B27DFD3EF005FF430 /* ProfileView.swift in Sources */,
 				AA95B84027E018CC00D64520 /* ConnectionHandler.swift in Sources */,
 				2FA821F927DFD39B005FF430 /* PortfolioAppApp.swift in Sources */,
 				350AF19827E016C100A1F796 /* Profile.swift in Sources */,
 				350AF19227DFECEB00A1F796 /* LikedUsers.swift in Sources */,
+				C606F37327E16B25004B55E1 /* ProximityView.swift in Sources */,
 				2FA8220927DFD3CE005FF430 /* LikedUsersView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,7 +323,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PortfolioApp/Preview Content\"";
-				DEVELOPMENT_TEAM = H485F393HU;
+				DEVELOPMENT_TEAM = 4ZD5K35X44;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PortfolioApp/Info.plist;
@@ -331,7 +339,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.cplayer524.PortolioApp;
+				PRODUCT_BUNDLE_IDENTIFIER = cbrendan.portfolio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -348,7 +356,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PortfolioApp/Preview Content\"";
-				DEVELOPMENT_TEAM = H485F393HU;
+				DEVELOPMENT_TEAM = 4ZD5K35X44;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PortfolioApp/Info.plist;
@@ -364,7 +372,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.cplayer524.Portfolio;
+				PRODUCT_BUNDLE_IDENTIFIER = cbrendan.portfolio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

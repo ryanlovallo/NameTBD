@@ -10,11 +10,13 @@ import SwiftUI
 struct HomeView: View {
     @Binding var homeViewType: String
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @ObservedObject var connec = ConnectionHandler()
     
     var body: some View {
-        Toggle("Activate Proximity", isOn: $connec.isBrowsing)
-        Text("ACTIVATE CONNECTION")
+        Button(action: {
+            self.homeViewType = "proximity"
+        }) {
+            Text("ACTIVATE CONNECTION")
+        }
             .padding()
             .navigationTitle("SwiftUI Rylo")
             .toolbar {

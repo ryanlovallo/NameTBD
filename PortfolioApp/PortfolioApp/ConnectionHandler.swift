@@ -11,14 +11,14 @@ import Foundation
 import MultipeerConnectivity
 
 class ConnectionHandler: NSObject, ObservableObject {
-    private var myPeerId = MCPeerID(displayName: "Dewey")
+    private var myPeerId: MCPeerID
     private var session: MCSession
     private var nearbyServiceBrowser: MCNearbyServiceBrowser
     private var nearbyServiceAdvertiser: MCNearbyServiceAdvertiser
     
     @Published var availableUsers: [MCPeerID] = []
     override init(){
-        self.myPeerId = MCPeerID(displayName: "Dewey")
+        self.myPeerId = MCPeerID(displayName: "trash man")
         session = MCSession(
           peer: myPeerId,
           securityIdentity: nil,
