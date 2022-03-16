@@ -19,9 +19,9 @@
 		2FA8220D27DFE506005FF430 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA8220C27DFE505005FF430 /* ContentView.swift */; };
 		350AF19227DFECEB00A1F796 /* LikedUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AF19127DFECEB00A1F796 /* LikedUsers.swift */; };
 		350AF19427DFEE0D00A1F796 /* LikedUserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AF19327DFEE0D00A1F796 /* LikedUserRow.swift */; };
-		AA95B84027E018CC00D64520 /* ConnectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95B83F27E018CC00D64520 /* ConnectionHandler.swift */; };
 		350AF19627E012EF00A1F796 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AF19527E012EF00A1F796 /* ProfileStore.swift */; };
 		350AF19827E016C100A1F796 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350AF19727E016C100A1F796 /* Profile.swift */; };
+		AA95B84027E018CC00D64520 /* ConnectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95B83F27E018CC00D64520 /* ConnectionHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,10 +38,10 @@
 		2FA8220C27DFE505005FF430 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		350AF19127DFECEB00A1F796 /* LikedUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUsers.swift; sourceTree = "<group>"; };
 		350AF19327DFEE0D00A1F796 /* LikedUserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUserRow.swift; sourceTree = "<group>"; };
-		AA30792427E11C8800D4E8D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		AA95B83F27E018CC00D64520 /* ConnectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHandler.swift; sourceTree = "<group>"; };
 		350AF19527E012EF00A1F796 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
 		350AF19727E016C100A1F796 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		AA30792427E11C8800D4E8D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AA95B83F27E018CC00D64520 /* ConnectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,7 +364,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.cplayer524.Porto;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.cplayer524.Portfolio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
