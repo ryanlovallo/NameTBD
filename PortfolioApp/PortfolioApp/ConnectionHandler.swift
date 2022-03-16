@@ -11,29 +11,34 @@ import Foundation
 import MultipeerConnectivity
 
 class ConnectionHandler: NSObject, ObservableObject {
-    private let myPeerId = MCPeerID(displayName: "Dewey")
-    private let session: MCSession
-    @Published var availableUsers: [MCPeerID] = []
+    private var myPeerId = MCPeerID(displayName: "Dewey")
+    private var session: MCSession
+    private var nearbyServiceBrowser: MCNearbyServiceBrowser
+    private var nearbyServiceAdvertiser: MCNearbyServiceAdvertiser
     
+    @Published var availableUsers: [MCPeerID] = []
     override init(){
+        self.myPeerId = MCPeerID(displayName: "Dewey")
         session = MCSession(
           peer: myPeerId,
           securityIdentity: nil,
           encryptionPreference:  MCEncryptionPreference.none)
+        
+        nearbyServiceBrowser = MCNearbyServiceBrowser(
+            peer: myPeerId,
+          serviceType: "Portfolio")
+        nearbyServiceAdvertiser = MCNearbyServiceAdvertiser(
+            peer: myPeerId,
+          discoveryInfo: nil,
+          serviceType: "Portfolio")
+        
         super.init()
         nearbyServiceAdvertiser.delegate = self
+        nearbyServiceBrowser.delegate = self
+        
         //Current functionality is that users are always advertising their profile
         startAdvertising()
     }
-    
-    private var nearbyServiceBrowser = MCNearbyServiceBrowser(
-      peer: MCPeerID(displayName: "Dewey"),
-      serviceType: "Portfolio")
-    
-    private var nearbyServiceAdvertiser = MCNearbyServiceAdvertiser(
-        peer: MCPeerID(displayName: "Dewey"),
-      discoveryInfo: nil,
-      serviceType: "Portfolio")
     
     func startBrowsing() {
       nearbyServiceBrowser.startBrowsingForPeers()
@@ -73,6 +78,8 @@ extension ConnectionHandler: MCNearbyServiceAdvertiserDelegate
     //This function will be called when an invitation is received, which should never happen for our app
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
     }
+    
+    
 }
 
 extension ConnectionHandler: MCNearbyServiceBrowserDelegate {
@@ -85,10 +92,15 @@ extension ConnectionHandler: MCNearbyServiceBrowserDelegate {
     withDiscoveryInfo info: [String: String]?
   ) {
     // 1
+      if(peerID.displayName == self.myPeerId.displayName)
+      {
+          return
+      }
     if !availableUsers.contains(peerID) {
       availableUsers.append(peerID)
     }
     print("New. User. DETECTED! in ur vicin")
+    print(myPeerId)
   }
     //This function is called when a user is no longer available I think? not totally important yet
   func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
@@ -96,5 +108,11 @@ extension ConnectionHandler: MCNearbyServiceBrowserDelegate {
     // 2
     availableUsers.remove(at: index)
   }
+    
+    func browser(_ browser: MCNearbyServiceBrowser,
+    didNotStartBrowsingForPeers error: Error)
+    {
+        print("Failed to actually browse")
+    }
 }
 
