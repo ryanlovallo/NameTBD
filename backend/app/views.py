@@ -48,6 +48,35 @@ def unlikeprofile(request):
     cursor.execute("DELETE FROM saved WHERE userID=(%s) AND saved_userID=(%s);", (user1,user2))
     return JsonResponse({})
 
+
+# @csrf_exempt
+# def editprofile(request):
+#    if request.method != "POST":
+#       HttpResponse(status=404)
+#    userID = request.POST.get('userID')
+#    employer = request.POST.get('employer')
+#    age = request.POST.get('age')
+#    gender = request.POST.get('gender')
+#    industry = request.POST.get('industry')
+#    education = request.POST.get('education')
+#    location = request.POST.get('location')
+#    interests = request.POST.get('interests')
+#    bio = request.POST.get('bio')
+#    profpic = request.FILES['profpic']
+
+    # do the filename stuff
+#    filename = str(userID)+".jpeg"
+#    fs = FileSystemStorage()
+#    filename = fs.save(filename, profpic)
+#    imageurl = fs.url(filename)
+    
+#    attr = [employer, age, gender, industry, education, interests, bio, imageurl, location, userID]
+#    cursor = connection.cursor()
+#    cursor.execute(
+#        "UPDATE info SET employer=(%s), age=(%s), gender=(%s), industry=(%s), education=(%s), interests=(%s), bio=(%s), profpic=(%s), location=(%s)  WHERE userid=(%s);",tuple(attr)
+#    )
+#    return JsonResponse({})
+
 @csrf_exempt
 def editprofile(request):
     if request.method != "POST":
@@ -62,21 +91,14 @@ def editprofile(request):
     location = json_data['location']
     interests = json_data['interests']
     bio = json_data['bio']
-    profpic = request.FILES['profpic']
+    profpic = json_data['profpic']
 
-    # do the filename stuff
-    filename = str(userID)+".jpeg"
-    fs = FileSystemStorage()
-    filename = fs.save(filename, profpic)
-    imageurl = fs.url(filename)
-    
-    attr = [employer, age, gender, industry, education, interests, bio, imageurl, location, userID]
+    attr = [employer, age, gender, industry, education, interests, bio, profpic, location, userID]
     cursor = connection.cursor()
     cursor.execute(
         "UPDATE info SET employer=(%s), age=(%s), gender=(%s), industry=(%s), education=(%s), interests=(%s), bio=(%s), profpic=(%s), location=(%s)  WHERE userid=(%s);",tuple(attr)
     )
     return JsonResponse({})
-
 
 @csrf_exempt
 def getprofile(request):
