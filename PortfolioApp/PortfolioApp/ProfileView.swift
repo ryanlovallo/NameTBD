@@ -13,14 +13,6 @@ struct ProfileView: View {
     @ObservedObject var store = ProfileStore.shared
     @State var idnum : String = "10"      // TODO:  THIS IS THE ID OF THE USER THAT IS OPERATING THE APP
     
-    var username = "Rylo96"
-    var jobtitle = "Master debater"
-    var loc = "Club space, miami"
-    var bio = "It Means bad kid random. This is used in video games when a person gets a random kid on their team and he is bad at the game. Look at this BK Randy on our team, he is so terrible."
-    
-    var number = "69-6969-69"
-    var email = "ryan@gmail.com"
-    
     var body: some View {
     
         NavigationView {
@@ -43,7 +35,9 @@ struct ProfileView: View {
 
                     Text(username).bold().font(.largeTitle)
                     
-                    NavigationLink(destination: EditProfileView()) {
+                    NavigationLink(destination: EditProfileView(usrid: idnum, pimporter: false, jt: jobtitle, ag: age, gen: gender,
+                                                                ind: industry, edu: education, intr: interests, b: bio,
+                                                                ppic: profpic, lc: loc)) {
                         Text("Edit")
                     }
                     

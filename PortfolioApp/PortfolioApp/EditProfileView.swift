@@ -9,43 +9,43 @@ import SwiftUI
 
 struct EditProfileView: View {
     @ObservedObject var store = ProfileStore.shared
-    
     @State private var presentImporter = false
-    
     @State var idnum : String = "10"      // TODO:  THIS IS THE ID OF THE USER THAT IS OPERATING THE APP
     
-//    // @State private var resume = ""
-//    @State private var jobtitle = "Consultant"
-//    @State private var location = "McLean, VA"
-//    @State private var bio = "teehee"
-//    @State private var phone = "703-420"
-    
     // TODO: CHECK HOW TO DO THIS IN OtherUserView
-    @State private var jobtitle : String = "yuri engineer" ?? "error"
-    @State private var age : String = "30" ?? "error"
-    @State private var gender : String = "male" ?? "error"
-    @State private var industry : String = "software" ?? "error"
-    @State private var education : String = "flint college" ?? "error"
-    @State private var interests : String = "sicing, going OC" ?? "error"
-    @State private var bio : String = "just tryna find a group of friends I can vibe with on a chill level" ?? "error"
-    @State private var profpic : String = "idk" ?? "error"
-    @State private var loc : String = "yellow house" ?? "error"
+    @State private var jobtitle = ""
+    @State private var age : String = ""
+    @State private var gender : String = ""
+    @State private var industry : String = ""
+    @State private var education : String = ""
+    @State private var interests : String = ""
+    @State private var bio : String = ""
+    @State private var profpic : String = ""
+    @State private var loc : String = ""
     
-//    // TODO: CHECK HOW TO DO THIS IN OtherUserView
-//    @State private var jobtitle : String = store.myprof.jobtitle ?? "error"
-//    @State private var age : String = store.myprof.age ?? "error"
-//    @State private var gender : String = store.myprof.gender ?? "error"
-//    @State private var industry : String = store.myprof.industry ?? "error"
-//    @State private var education : String = store.myprof.education ?? "error"
-//    @State private var interests : String = store.myprof.interests ?? "error"
-//    @State private var bio : String = store.myprof.bio ?? "error"
-//    @State private var profpic : String = store.myprof.profpic ?? "error"
-//    @State private var loc : String = store.myprof.loc ?? "error"
-//
+    // this is needed for
+    init(usrid: String, pimporter: Bool, jt: String, ag: String, gen: String, ind: String, edu: String, intr: String,
+            b: String, ppic: String, lc: String) {
+        
+        self._idnum = State(wrappedValue: usrid)
+        self._presentImporter = State(wrappedValue: pimporter)
+        self._jobtitle = State(wrappedValue: jt)
+        self._age = State(wrappedValue: ag)
+        self._gender = State(wrappedValue: gen)
+        self._industry = State(wrappedValue: ind)
+        self._education = State(wrappedValue: edu)
+        self._interests = State(wrappedValue: intr)
+        self._bio = State(wrappedValue: b)
+        self._profpic = State(wrappedValue: ppic)
+        self._loc = State(wrappedValue: lc)
+        self._store = ObservedObject(wrappedValue: ProfileStore.shared)
+    }
+
     var body: some View {
         
         ScrollView {
             VStack(alignment: .leading, spacing: 5) {
+                
                 Text("Edit Profile").bold().font(.largeTitle)
                 Group {
                     Divider()
@@ -63,6 +63,7 @@ struct EditProfileView: View {
                         }
                     }.padding()
                 }
+            
                 
                 Group {
                     Divider()
@@ -106,25 +107,31 @@ struct EditProfileView: View {
                     Spacer()
                 }
                 
-                
-                Button(action: {
-                    // TODO: MAKE A POST REQUEST HERE
-                    print("Make a post call to update the user's information")
-                }) {
-                    Text("Submit")
-                    .padding(10.0).overlay(
-                        RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 2.0)
-                            .shadow(color: .green, radius: 10.0)
-                    )
+                Group {
+                    Button(action: {
+                        // TODO: MAKE A POST REQUEST HERE
+//                        let _ = print(age)
+//                        let _ = print(gender)
+                        print("Make a post call to update the user's information")
+                    }) {
+                        Text("Submit")
+                        .padding(40.0).overlay(
+                            RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 2.0)
+                                .shadow(color: .green, radius: 10.0)
+                        )
+                    }
+                    Spacer()
+                    Spacer()
+
                 }
 
             }
         }
-//        .refreshable {
-//            store.getProfile(id: idnum)
-//        }
-//        .onAppear {
-//            store.getProfile(id: idnum)
-//        }
+        .refreshable {
+            store.getProfile(id: idnum)
+        }
+        .onAppear {
+            store.getProfile(id: idnum)
+        }
     }
 }
