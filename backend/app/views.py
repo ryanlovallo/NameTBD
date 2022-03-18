@@ -116,6 +116,26 @@ def getprofile(request):
     response['user'] = user_info + info_info + (len(cursor.fetchall()) > 0,)
     return JsonResponse(response)
 
+@csrf_exempt
+def getNearbyProfile(request):
+    if request.method != "GET":
+        HttpResponse(status=404)
+    lookup = request.GET['name']
+    logname = request.GET['logname']
+    cursor = connection.cursor()
+    cursor.execute('SELECT name, phonenum, email FROM users where name=(%s);',(lookup,))
+    user_info = cursor.fetchall()[0]
+    cursor.execute('SELECT userID from users where name=(%s);',(logname,))
+    firstID = cursor.fetchall()[0]
+    cursor.execute('SELECT userID from users where name=(%s);',(lookup,))
+    secondID = cursor.fetchall()[0]
+    cursor.execute('SELECT * FROM info where userID =(%s);',(secondID,))
+    info_info = cursor.fetchall()[0]
+    cursor.execute('SELECT * FROM saved WHERE userID=(%s) AND saved_userID=(%s);', (firstID, secondID))
+    response = {}
+    response['user'] = user_info + info_info + (len(cursor.fetchall()) > 0,)
+    return JsonResponse(response)
+
 
 @csrf_exempt
 def getlikes(request):

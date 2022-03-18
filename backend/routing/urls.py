@@ -26,4 +26,5 @@ urlpatterns = [
     path('editprofile/', views.editprofile, name='editprofile'),
     path('unlikeprofile/', views.unlikeprofile, name='unlikeprofile'),
     path('getprofile/', views.getprofile, name='getprofile'),
+    path('getNearbyProfile/', views.getNearbyProfile, name='getNearbyProfile'),
 ]
