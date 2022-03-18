@@ -232,6 +232,69 @@ final class ProfileStore: ObservableObject {
             }
         }.resume()
     }
+
+    func getNearbyProfile(name: String) {
+
+        guard let apiUrl = URL(string: serverUrl+"getNearbyProfile"+"?name="+name+"&logname=Brendan") else {
+            print("getprofile: Bad URL")
+            return
+        }
+
+        var request = URLRequest(url: apiUrl)
+        
+        request.httpMethod = "GET"
+        // request.httpHeader = jsonData
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            guard let data = data, error == nil else {
+                print("getprofile: NETWORKING ERROR")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                print("getprofile: HTTP STATUS: \(httpStatus.statusCode)")
+                return
+            }
+
+            
+            guard let jsonObj = try? JSONSerialization.jsonObject(with: data) as? [String : Any] else {
+                print("getprofile: failed JSON deserialization")
+                return
+            }
+ 
+            let profsReceived = jsonObj["user"] as? [Any] ?? []
+            
+            print("before")
+            print(profsReceived)
+            print("after")
+            print(profsReceived[0])
+            print("after")
+            
+            // let bioos = String(describing: profEntry[5])
+            
+            self.prof.username = String(describing: profsReceived[0])
+            self.prof.number = String(describing: profsReceived[1])
+            self.prof.email = String(describing: profsReceived[2])
+            self.prof.userID = String(describing: profsReceived[3])
+            self.prof.jobtitle = String(describing: profsReceived[4])
+            self.prof.age = String(describing: profsReceived[5])
+            self.prof.gender = String(describing: profsReceived[6])
+            self.prof.industry = String(describing: profsReceived[7])
+            self.prof.education = String(describing: profsReceived[8])
+            self.prof.interests = String(describing: profsReceived[9])
+            self.prof.bio = String(describing: profsReceived[10])
+            self.prof.profpic = String(describing: profsReceived[11])
+            self.prof.loc = String(describing: profsReceived[12])
+            self.prof.liked = String(describing: profsReceived[13])
+            
+            print("Liked value:", self.prof.liked)
+            DispatchQueue.main.async {
+//                self.prof = profsReceived
+                print("XXXXX")
+            }
+        }.resume()
+    }
     
     
     
