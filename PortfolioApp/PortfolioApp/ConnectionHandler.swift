@@ -16,7 +16,7 @@ class ConnectionHandler: NSObject, ObservableObject {
     
     @Published var availableUsers: [MCPeerID] = []
     override init(){
-        self.myPeerId = MCPeerID(displayName: "Christian")
+        self.myPeerId = MCPeerID(displayName: "Mike")
         session = MCSession(
           peer: myPeerId,
           securityIdentity: nil,
@@ -38,6 +38,11 @@ class ConnectionHandler: NSObject, ObservableObject {
         startAdvertising()
     }
     
+    deinit
+    {
+        availableUsers.removeAll()
+    }
+    
     func startBrowsing() {
       nearbyServiceBrowser.startBrowsingForPeers()
     }
@@ -54,6 +59,23 @@ class ConnectionHandler: NSObject, ObservableObject {
     func stopAdvertising()
     {
         nearbyServiceAdvertiser.stopAdvertisingPeer()
+    }
+    
+    func AddUser(peerID: MCPeerID)
+    {
+        var contained = false
+        
+        for val in availableUsers{
+            if val.displayName == peerID.displayName
+            {
+                contained = true
+            }
+        }
+        if !contained
+        {
+            availableUsers.append(peerID)
+        }
+                    
     }
     
     //Toggle button will set this to true or false, triggering the browser to start or stop
@@ -85,10 +107,7 @@ extension ConnectionHandler: MCNearbyServiceBrowserDelegate {
       {
           return
       }
-    if !availableUsers.contains(peerID) {
-      availableUsers.append(peerID)
-    }
-    print(myPeerId)
+    AddUser(peerID: peerID)
   }
     //This function is called when a user is no longer available
   func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
