@@ -15,5 +15,6 @@ struct Profile {
     var ProfPick: String?
     var email: String?
     var bio: String?
+    var industry: String?
     
 }
