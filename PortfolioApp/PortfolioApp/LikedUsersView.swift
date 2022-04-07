@@ -17,6 +17,7 @@ struct LikedUsersView: View {
     // var likedUserhardcode: LikedUsers = LikedUsers(name: "Rylo")
     
     var body: some View {
+
         NavigationView {
             List {
                 ForEach(searchResults, id: \.userID) { rw in
@@ -24,10 +25,11 @@ struct LikedUsersView: View {
 //                    Text(rw.username!)
                 }
             }
+            .navigationBarTitle("Filter by industry")
             .searchable(text: $searchText)
             .refreshable {
                 store.getLikes(id: "10")    // 10 should be the user of the device's ID
-//                print(store.profiles)
+                print(store.profiles)
             }
             .onAppear {
                 store.getLikes(id: "10")    // 10 should be the user of the device's ID
@@ -38,7 +40,6 @@ struct LikedUsersView: View {
         .navigationTitle("SwiftUI Rylo")
         .toolbar {
             ToolbarItemGroup(placement: .bottomBar) {
-                
                 ZStack {
                     Button(action: {
                         self.usersViewType = "home"
@@ -71,7 +72,7 @@ struct LikedUsersView: View {
         if searchText.isEmpty {
             return store.profiles
         } else {
-            return store.profiles.filter { ($0.username!).contains(searchText) }
+            return store.profiles.filter { ($0.industry!).contains(searchText) }
         }
     }
 }

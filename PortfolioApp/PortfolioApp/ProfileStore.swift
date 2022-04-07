@@ -96,21 +96,21 @@ final class ProfileStore: ObservableObject {
         request.httpBody = jsonData
 
         URLSession.shared.dataTask(with: request) { data, response, error in
-                   guard let _ = data, error == nil else {
-                       print("editProfile: NETWORKING ERROR")
-                       return
-                   }
+           guard let _ = data, error == nil else {
+               print("editProfile: NETWORKING ERROR")
+               return
+           }
 
-                   if let httpStatus = response as? HTTPURLResponse {
-                       if httpStatus.statusCode != 200 {
-                           print("editProfile: HTTP STATUS: \(httpStatus.statusCode)")
-                           return
-                       } else {
-                           // NEEDS UNCOMMENTED
-                           // self.getProfile()
-                       }
-                   }
-               }.resume()
+           if let httpStatus = response as? HTTPURLResponse {
+               if httpStatus.statusCode != 200 {
+                   print("editProfile: HTTP STATUS: \(httpStatus.statusCode)")
+                   return
+               } else {
+                   // NEEDS UNCOMMENTED
+                   // self.getProfile()
+               }
+           }
+       }.resume()
     }
     
     
@@ -155,9 +155,11 @@ final class ProfileStore: ObservableObject {
                     let prfpic = String(describing: profEntry[3])
                     let eml = String(describing: profEntry[4])
                     let bioos = String(describing: profEntry[5])
+                    let indstr = String(describing: profEntry[6])
                     
                     if profEntry.count == self.nFields {
-                        self.profiles.append(Profile(userID: usrid, username: usrname, number: nmbr, ProfPick: prfpic, email: eml, bio: bioos))
+                        self.profiles.append(Profile(userID: usrid, username: usrname, number: nmbr,
+                                                     ProfPick: prfpic, email: eml, bio: bioos, industry: indstr))
 //                        print(self.profiles)
 
                     } else {

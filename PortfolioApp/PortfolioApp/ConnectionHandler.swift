@@ -15,6 +15,7 @@ class ConnectionHandler: NSObject, ObservableObject {
     private var nearbyServiceAdvertiser: MCNearbyServiceAdvertiser
     
     @Published var availableUsers: [MCPeerID] = []
+    
     override init(){
         self.myPeerId = MCPeerID(displayName: "Mike")
         session = MCSession(

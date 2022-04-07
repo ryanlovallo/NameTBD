@@ -29,36 +29,35 @@ struct ProximityView: View {
             }
 
         }
-        
-            .toolbar {
-                ToolbarItemGroup(placement: .bottomBar) {
-                    
-                    ZStack {
-                        Button(action: {
-                            self.proximityViewType = "home"
-                        }) {
-                            Text("Home")
-                        }
+        .toolbar {
+            ToolbarItemGroup(placement: .bottomBar) {
+                
+                ZStack {
+                    Button(action: {
+                        self.proximityViewType = "home"
+                    }) {
+                        Text("Home")
                     }
-                    
-                    ZStack {
-                        Button(action: {
-                            self.proximityViewType = "likedusers"
-                        }) {
-                            Text("Liked Users")
-                        }
-                    }
-                    
-                    ZStack {
-                        Button(action: {
-                            self.proximityViewType = "profile"
-                        }) {
-                            Text("Profile")
-                        }
-                    }
-
                 }
+                
+                ZStack {
+                    Button(action: {
+                        self.proximityViewType = "likedusers"
+                    }) {
+                        Text("Liked Users")
+                    }
+                }
+                
+                ZStack {
+                    Button(action: {
+                        self.proximityViewType = "profile"
+                    }) {
+                        Text("Profile")
+                    }
+                }
+
             }
+        }
     }
     
 }
