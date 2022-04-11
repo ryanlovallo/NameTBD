@@ -13,6 +13,8 @@ struct NearbyProfileView: View {
     
     @State var name : String
     @State private var isLiked: String = ""
+
+    
     // @State private var isLiked: Int = 0
     var body: some View {
         
@@ -32,56 +34,85 @@ struct NearbyProfileView: View {
                 let bio : String = store.prof.bio ?? "error"
                 let profpic : String = store.prof.profpic ?? "error"
                 let loc : String = store.prof.loc ?? "error"
+                let isPriv : String = store.prof.isPrivate ?? "error"
                 var Liked : String = store.prof.liked ?? "error"
+                let score : String = store.prof.score ?? "error"
                 
                 
-                Group {
+                if (score == "0") {
+                    Text("Weak Match")
+                        .foregroundColor(.red)
+                }
+                else if (score == "1") {
+                    Text("Fair Match")
+                        .foregroundColor(.orange)
+                }
+                else if (score == "2") {
+                    Text("Good Match")
+                        .foregroundColor(.yellow)
+                }
+                else {
+                    Text("Strong Match")
+                        .foregroundColor(.green)
+                }
+                if (isPriv == "1") {
                     Text(username).bold().font(.largeTitle)
-                    // REPLACE rylo96 with "profile.username" when the time comes
-
-                    Divider()
-                    Text("**Location:** \(loc)")
-                    Text("**Industry:** \(industry)")
-                    Text("**Job title:** \(jobtitle)")
+                    Text("private").italic()
                     
-                    if(Liked == "0") {
-                        Button(action: {
-                            store.postLike(store.prof.userID ?? "")
-                            Liked = "1"
-                            isLiked = "2"
-                        }) { Text("Like")
-                            
-                        }.padding().border(Color.black)
-                    }
-                    else if(Liked == "1") {
-                        Button(action: {
-                            store.postUnlike(store.prof.userID ?? "")
-                            Liked = "0"
-                            isLiked = "5"
-                        }) { Text("Unlike")
-                            
-                        }.padding().border(Color.black)
-                    }
-                    
-
                     Divider()
                     Text("Bio:").bold()
 
                     Text(bio).padding().border(Color.black)
+                    
+                } else {
+                    
                     Group {
-                    
-                        Text("**Interests**: \(interests)")
+                        Text(username).bold().font(.largeTitle)
+
                         Divider()
+                        Text("**Location:** \(loc)")
+                        Text("**Industry:** \(industry)")
+                        Text("**Job title:** \(jobtitle)")
                         
-                        Text("**Age**: \(age)")
-                        Text("**Gender**: \(gender)")
-                        Text("**Education**: \(education)")
-                
+                        if(Liked == "0") {
+                            Button(action: {
+                                store.postLike(store.prof.userID ?? "")
+                                Liked = "1"
+                                isLiked = "2"
+                            }) { Text("Like")
+                                
+                            }.padding().border(Color.black)
+                        }
+                        else if(Liked == "1") {
+                            Button(action: {
+                                store.postUnlike(store.prof.userID ?? "")
+                                Liked = "0"
+                                isLiked = "5"
+                            }) { Text("Unlike")
+                                
+                            }.padding().border(Color.black)
+                        }
+                        
+
                         Divider()
+                        Text("Bio:").bold()
+
+                        Text(bio).padding().border(Color.black)
+                        Group {
+                        
+                            Text("**Interests**: \(interests)")
+                            Divider()
+                            
+                            Text("**Age**: \(age)")
+                            Text("**Gender**: \(gender)")
+                            Text("**Education**: \(education)")
                     
-                        Text("Contact Information").bold().font(.title)
-                        Text("**Email**: \(email)")
-                        Text("**Phone number**: \(number)")
+                            Divider()
+                        
+                            Text("Contact Information").bold().font(.title)
+                            Text("**Email**: \(email)")
+                            Text("**Phone number**: \(number)")
+                        }
                     }
                 }
             }
