@@ -139,17 +139,17 @@ def getNearbyProfile(request):
     info_dct = dict((x, y) for x, y in info_info)
     logname_dct = dict((x, y) for x, y in logname_info)
     if info_dict['industry'] != logname_dict['industry'] and info_dict['interests'] != logname_dict['interests'] and info_dict['education'] != logname_dict['education']:
-        sim_score = random.randrange(0, 25)
+        sim_score = 0
     elif info_dict['industry'] != logname_dict['industry'] and info_dict['interests'] != logname_dict['interests']:
-        sim_score = random.randrange(25, 45)
+        sim_score = 1
     elif info_dict['interests'] != logname_dict['interests'] and info_dict['education'] != logname_dict['education']:
-        sim_score = random.randrange(25, 45)
+        sim_score = 1
     elif info_dict['industry'] != logname_dict['industry'] and info_dict['education'] != logname_dict['education']:
-        sim_score = random.randrange(25, 45)
+        sim_score = 1
     elif info_dict['industry'] == logname_dict['industry'] and info_dict['interests'] == logname_dict['interests'] and info_dict['education'] == logname_dict['education']:
-        sim_score = random.randrange(80, 100)
+        sim_score = 3
     else:
-        sim_score = random.randrange(45, 80)
+        sim_score = 2
     cursor.execute('SELECT * FROM saved WHERE userID=(%s) AND saved_userID=(%s);', (firstID, secondID))
     response = {}
     response['user'] = user_info + info_info + (len(cursor.fetchall()) > 0,) + (sim_score,)
