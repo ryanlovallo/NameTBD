@@ -6,21 +6,25 @@
 //
 
 import SwiftUI
+import MultipeerConnectivity
 
 struct ProximityView: View {
     @Binding var proximityViewType: String
     @ObservedObject var connec = ConnectionHandler()
     
+    @State private var searchText = ""
     
     var body: some View {
         Toggle("Activate Proximity", isOn: $connec.isBrowsing)
         NavigationView {
             
             List {
-                ForEach(connec.availableUsers, id: \.self) { rw in
+                ForEach(searchResults, id: \.self) { rw in
                     NearbyUserRow(nearbyUser: rw)
                 }
             }
+            .navigationTitle("Nearby Portfolios")
+            .searchable(text: $searchText)
             .refreshable {
                 connec.availableUsers    // 10 should be the user of the device's ID
             }
@@ -29,6 +33,7 @@ struct ProximityView: View {
             }
 
         }
+        .navigationTitle("Nearby Portfolios")
         .toolbar {
             ToolbarItemGroup(placement: .bottomBar) {
                 
@@ -57,6 +62,14 @@ struct ProximityView: View {
                 }
 
             }
+        }
+    }
+    
+    var searchResults: [MCPeerID] {
+        if searchText.isEmpty {
+            return connec.availableUsers
+        } else {
+            return connec.availableUsers.filter { ($0.displayName).contains(searchText) }
         }
     }
     

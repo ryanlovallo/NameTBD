@@ -17,15 +17,23 @@ struct LikedUsersView: View {
     // var likedUserhardcode: LikedUsers = LikedUsers(name: "Rylo")
     
     var body: some View {
-
+        
         NavigationView {
             List {
+//                Section(header: Text("Filter by industry")) {
                 ForEach(searchResults, id: \.userID) { rw in
                     LikedUserRow(likedUser: rw)
-//                    Text(rw.username!)
+                }
+//                }
+            }
+            .navigationTitle("Liked Portfolios")
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    VStack (spacing: 0) {
+                        Text("Filter by Industry").font(.system(size: 20.0)).italic()
+                    }
                 }
             }
-            .navigationBarTitle("Filter by industry")
             .searchable(text: $searchText)
             .refreshable {
                 store.getLikes(id: "10")    // 10 should be the user of the device's ID
