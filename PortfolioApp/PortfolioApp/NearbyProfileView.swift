@@ -36,8 +36,25 @@ struct NearbyProfileView: View {
                 let loc : String = store.prof.loc ?? "error"
                 let isPriv : String = store.prof.isPrivate ?? "error"
                 var Liked : String = store.prof.liked ?? "error"
+                let score : String = store.prof.score ?? "error"
                 
                 
+                if (score == "0") {
+                    Text("Weak Match")
+                        .foregroundColor(.red)
+                }
+                else if (score == "1") {
+                    Text("Fair Match")
+                        .foregroundColor(.orange)
+                }
+                else if (score == "2") {
+                    Text("Good Match")
+                        .foregroundColor(.yellow)
+                }
+                else {
+                    Text("Strong Match")
+                        .foregroundColor(.green)
+                }
                 if (isPriv == "1") {
                     Text(username).bold().font(.largeTitle)
                     Text("private").italic()

@@ -231,6 +231,7 @@ final class ProfileStore: ObservableObject {
             self.prof.loc = String(describing: profsReceived[12])
             self.prof.isPrivate = String(describing: profsReceived[13])
             self.prof.liked = String(describing: profsReceived[14])
+            self.prof.score = String(describing: profsReceived[15])
             
             print("Liked value:", self.prof.liked)
             DispatchQueue.main.async {
