@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.db import connection
 from django.views.decorators.csrf import csrf_exempt
+import random
 import json
 import os, time
 from django.conf import settings
@@ -92,11 +93,12 @@ def editprofile(request):
     interests = json_data['interests']
     bio = json_data['bio']
     profpic = json_data['profpic']
+    privacyOn = json_data['privacyOn']
 
-    attr = [employer, age, gender, industry, education, interests, bio, profpic, location, userID]
+    attr = [employer, age, gender, industry, education, interests, bio, profpic, location,privacyOn, userID]
     cursor = connection.cursor()
     cursor.execute(
-        "UPDATE info SET employer=(%s), age=(%s), gender=(%s), industry=(%s), education=(%s), interests=(%s), bio=(%s), profpic=(%s), location=(%s)  WHERE userid=(%s);",tuple(attr)
+        "UPDATE info SET employer=(%s), age=(%s), gender=(%s), industry=(%s), education=(%s), interests=(%s), bio=(%s), profpic=(%s), location=(%s), privacyOn=(%s)  WHERE userid=(%s);",tuple(attr)
     )
     return JsonResponse({})
 
@@ -137,11 +139,20 @@ def getNearbyProfile(request):
     info_dct = dict((x, y) for x, y in info_info)
     logname_dct = dict((x, y) for x, y in logname_info)
     if info_dict['industry'] != logname_dict['industry'] and info_dict['interests'] != logname_dict['interests'] and info_dict['education'] != logname_dict['education']:
-        # return JsonResponse({})
-        pass
+        sim_score = random.randrange(0, 25)
+    elif info_dict['industry'] != logname_dict['industry'] and info_dict['interests'] != logname_dict['interests']:
+        sim_score = random.randrange(25, 45)
+    elif info_dict['interests'] != logname_dict['interests'] and info_dict['education'] != logname_dict['education']:
+        sim_score = random.randrange(25, 45)
+    elif info_dict['industry'] != logname_dict['industry'] and info_dict['education'] != logname_dict['education']:
+        sim_score = random.randrange(25, 45)
+    elif info_dict['industry'] == logname_dict['industry'] and info_dict['interests'] == logname_dict['interests'] and info_dict['education'] == logname_dict['education']:
+        sim_score = random.randrange(80, 100)
+    else:
+        sim_score = random.randrange(45, 80)
     cursor.execute('SELECT * FROM saved WHERE userID=(%s) AND saved_userID=(%s);', (firstID, secondID))
     response = {}
-    response['user'] = user_info + info_info + (len(cursor.fetchall()) > 0,)
+    response['user'] = user_info + info_info + (len(cursor.fetchall()) > 0,) + (sim_score,)
     return JsonResponse(response)
 
 
