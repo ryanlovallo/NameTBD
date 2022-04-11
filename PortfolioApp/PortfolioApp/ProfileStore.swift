@@ -68,7 +68,7 @@ final class ProfileStore: ObservableObject {
     
     func editProfile(usrid: String, jt: String, ag: String, gen: String,
                        ind: String, edu: String, intr: String, b: String,
-                       ppic: String, lc: String) {
+                     ppic: String, lc: String, ispriv: String) {
         let jsonObj = ["userID": usrid,
                        "employer": jt,
                        "age": ag,
@@ -78,8 +78,12 @@ final class ProfileStore: ObservableObject {
                        "location": lc,
                        "interests": intr,
                        "bio": b,
-                       "profpic": ppic
+                       "profpic": ppic,
+                       "privacyOn": ispriv,
         ]
+        
+        print("hi")
+        print(jsonObj)
         
         guard let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj) else {
             print("editProfile: jsonData serialization error")
@@ -225,7 +229,8 @@ final class ProfileStore: ObservableObject {
             self.prof.bio = String(describing: profsReceived[10])
             self.prof.profpic = String(describing: profsReceived[11])
             self.prof.loc = String(describing: profsReceived[12])
-            self.prof.liked = String(describing: profsReceived[13])
+            self.prof.isPrivate = String(describing: profsReceived[13])
+            self.prof.liked = String(describing: profsReceived[14])
             
             print("Liked value:", self.prof.liked)
             DispatchQueue.main.async {

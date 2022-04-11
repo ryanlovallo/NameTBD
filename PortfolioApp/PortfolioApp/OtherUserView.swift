@@ -13,6 +13,7 @@ struct OtherUserView: View {
     
     @State var idnum : String
     @State private var isLiked: String = ""
+    
     // @State private var isLiked: Int = 0
     var body: some View {
         
@@ -33,7 +34,6 @@ struct OtherUserView: View {
                 let profpic : String = store.prof.profpic ?? "error"
                 let loc : String = store.prof.loc ?? "error"
                 var Liked : String = store.prof.liked ?? "error"
-                
                 
                 Group {
                     Text(username).bold().font(.largeTitle)

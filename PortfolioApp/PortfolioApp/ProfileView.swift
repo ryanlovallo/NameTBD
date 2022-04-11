@@ -32,12 +32,13 @@ struct ProfileView: View {
                     let bio : String = store.prof.bio ?? "error"
                     let profpic : String = store.prof.profpic ?? "error"
                     let loc : String = store.prof.loc ?? "error"
+                    let isPriv : String = store.prof.isPrivate ?? "error"
 
                     Text(username).bold().font(.largeTitle)
                     
                     NavigationLink(destination: EditProfileView(usrid: idnum, pimporter: false, jt: jobtitle, ag: age, gen: gender,
                                                                 ind: industry, edu: education, intr: interests, b: bio,
-                                                                ppic: profpic, lc: loc)) {
+                                                                ppic: profpic, lc: loc, ispriv: isPriv)) {
                         Text("Edit")
                     }
                     

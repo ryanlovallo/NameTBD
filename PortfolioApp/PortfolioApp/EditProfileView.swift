@@ -22,12 +22,15 @@ struct EditProfileView: View {
     @State private var bio : String = ""
     @State private var profpic : String = ""
     @State private var loc : String = ""
+    @State private var isPrivat : String = ""
     
     @State private var dummy : Int = 0
     
+    @State private var currentIsPriv = false
+    
     // this is needed for
     init(usrid: String, pimporter: Bool, jt: String, ag: String, gen: String, ind: String, edu: String, intr: String,
-            b: String, ppic: String, lc: String) {
+         b: String, ppic: String, lc: String, ispriv: String) {
         
         self._idnum = State(wrappedValue: usrid)
         self._presentImporter = State(wrappedValue: pimporter)
@@ -40,6 +43,13 @@ struct EditProfileView: View {
         self._bio = State(wrappedValue: b)
         self._profpic = State(wrappedValue: ppic)
         self._loc = State(wrappedValue: lc)
+        self._isPrivat = State(wrappedValue: ispriv)
+        
+        if (ispriv == "1") {
+            self._currentIsPriv = State(wrappedValue: true)
+        } else {
+            self._currentIsPriv = State(wrappedValue: false)
+        }
         self._store = ObservedObject(wrappedValue: ProfileStore.shared)
     }
 
@@ -51,19 +61,10 @@ struct EditProfileView: View {
                 Text("Edit Profile").bold().font(.largeTitle)
                 Group {
                     Divider()
-                    Text("Upload Resume (PDF Only):").bold()
                     
-                    Button("Upload") {
-                        presentImporter = true
-                    }.fileImporter(isPresented: $presentImporter, allowedContentTypes: [.pdf]) {
-                        result in
-                        switch result {
-                        case.success(let url):
-                            print(url)
-                        case.failure(let error):
-                            print(error)
-                        }
-                    }.padding()
+                    Toggle("Private profile", isOn: $currentIsPriv)
+                    
+                    Divider()
                 }
             
                 
@@ -112,7 +113,14 @@ struct EditProfileView: View {
                 Group {
                     Button(action: {
                         // TODO: MAKE A POST REQUEST HERE
-                        self.store.editProfile(usrid: idnum, jt: jobtitle, ag: age, gen: gender, ind: industry, edu: education, intr: interests, b: bio, ppic: profpic, lc: loc)
+                        if (currentIsPriv) {
+                            isPrivat = "1"
+                        } else {
+                            isPrivat = "0"
+                        }
+                        print(currentIsPriv)
+                        print(isPrivat)
+                        self.store.editProfile(usrid: idnum, jt: jobtitle, ag: age, gen: gender, ind: industry, edu: education, intr: interests, b: bio, ppic: profpic, lc: loc, ispriv: isPrivat)
                         self.dummy += 1
                     }) {
                         Text("Submit")
