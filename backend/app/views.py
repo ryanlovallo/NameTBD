@@ -136,8 +136,14 @@ def getNearbyProfile(request):
     # make sure the logged in user only gets somewhat similar users
     cursor.execute('SELECT * FROM info where userID =(%s);',(firstID,))
     logname_info = cursor.fetchall()[0]
-    info_dct = dict((x, y) for x, y in info_info)
-    logname_dct = dict((x, y) for x, y in logname_info)
+    info_dict = {"interests": info_info[6],
+                 "industry": info_info[4],
+                 "education": info_info[5]
+    }
+    logname_dict = {"interests": logname_info[6],
+                 "industry": logname_info[4],
+                 "education": logname_info[5]
+    }
     if info_dict['industry'] != logname_dict['industry'] and info_dict['interests'] != logname_dict['interests'] and info_dict['education'] != logname_dict['education']:
         sim_score = 0
     elif info_dict['industry'] != logname_dict['industry'] and info_dict['interests'] != logname_dict['interests']:
@@ -176,6 +182,10 @@ def getlikes(request):
             continue
         all_users.append(to_add[0] + to_add2[0])
     response = {}
+    # sort by time, name, industry
+    sort_type = request.GET['type']
+    if sort_type == 'name':
+        all_users.sort(key=operator.itemgetter(1))
     response['users'] = all_users
     return JsonResponse(response)
 
