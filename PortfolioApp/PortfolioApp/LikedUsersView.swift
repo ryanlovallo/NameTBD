@@ -20,6 +20,9 @@ struct LikedUsersView: View {
     
     var body: some View {
         
+        Group {
+            Toggle("Sort by name", isOn: $isName)
+        }
         NavigationView {
             List {
 //                Section(header: Text("Filter by industry")) {
@@ -42,7 +45,6 @@ struct LikedUsersView: View {
                 print(store.profiles)
             }
             .onAppear {
-                Toggle("Sort by name", isOn: $isName)
                 store.getLikes(id: "10", isName: isName)    // 10 should be the user of the device's ID
             }
 

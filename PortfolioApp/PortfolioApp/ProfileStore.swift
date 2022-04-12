@@ -124,7 +124,7 @@ final class ProfileStore: ObservableObject {
         if (isName) {
             is_name = "name"
         }
-        guard let apiUrl = URL(string: serverUrl+"getlikes"+"?id="+id+"?type="+is_name) else {
+        guard let apiUrl = URL(string: serverUrl+"getlikes"+"?id="+id+"&type="+is_name) else {
             print("getlikes: Bad URL")
             return
         }
