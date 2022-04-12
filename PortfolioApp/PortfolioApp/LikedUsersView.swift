@@ -14,6 +14,8 @@ struct LikedUsersView: View {
     
     @State private var searchText = ""
     
+    @State private var isName = false
+    
     // var likedUserhardcode: LikedUsers = LikedUsers(name: "Rylo")
     
     var body: some View {
@@ -36,11 +38,12 @@ struct LikedUsersView: View {
             }
             .searchable(text: $searchText)
             .refreshable {
-                store.getLikes(id: "10")    // 10 should be the user of the device's ID
+                store.getLikes(id: "10", isName: isName)    // 10 should be the user of the device's ID
                 print(store.profiles)
             }
             .onAppear {
-                store.getLikes(id: "10")    // 10 should be the user of the device's ID
+                Toggle("Sort by name", isOn: $isName)
+                store.getLikes(id: "10", isName: isName)    // 10 should be the user of the device's ID
             }
 
         }

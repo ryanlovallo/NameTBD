@@ -118,9 +118,13 @@ final class ProfileStore: ObservableObject {
     }
     
     
-    func getLikes(id: String) {
+    func getLikes(id: String, isName: Bool) {
         print(id)
-        guard let apiUrl = URL(string: serverUrl+"getlikes"+"?id="+id) else {
+        var is_name = "p"
+        if (isName) {
+            is_name = "name"
+        }
+        guard let apiUrl = URL(string: serverUrl+"getlikes"+"?id="+id+"?type="+is_name) else {
             print("getlikes: Bad URL")
             return
         }
