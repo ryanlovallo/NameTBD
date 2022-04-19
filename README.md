@@ -7,7 +7,7 @@
 ![Elevator Pitch](https://user-images.githubusercontent.com/58456051/133131373-e909da64-93cb-449f-b9f0-3a58dcb1b9db.png) <!-- MUST be placed in user-images.githubusercontent.com -->
 ![Team](/assets/team.png)
 
-[demo_page]: << LINK TO OUR DEMO VID >> 
-[wiki_page]: << LINK TO OUR GITHUB WIKI >>
-[process_page]: https://trello.com/b/sample/general
+[demo_page]( https://www.youtube.com/watch?v=C0Vo8R_fffc ) 
+[wiki_page](https://github.com/ryanlovallo/NameTBD/wiki)
+[process_page](https://trello.com/b/sample/general)
 
